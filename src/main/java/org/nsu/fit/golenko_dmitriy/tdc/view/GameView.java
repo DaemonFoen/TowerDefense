@@ -32,12 +32,10 @@ import org.nsu.fit.golenko_dmitriy.tdc.model.client.handler.OnFieldUpdateListene
 import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.Entity;
 import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.Field;
 import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.UserData;
-import org.nsu.fit.golenko_dmitriy.tdc.presenter.OnGameEndListener;
-import org.nsu.fit.golenko_dmitriy.tdc.presenter.Presenter;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 @Log4j2
-public class GameView implements AbstractView, Initializable, OnFieldUpdateListener, OnGameEndListener {
+public class GameView implements AbstractView, Initializable, OnFieldUpdateListener{
     public static final String ROOT = "guildhall";
     public static Vertex<String> ROOT_VERTEX;
     private final UserClient userClient;
@@ -180,11 +178,6 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
         entitiesObj.remove(id);
     }
 
-    @Override
-    public void end() {
-        graphView.getStylableVertex(ROOT).setStyleClass("guildhall-dead");
-        graphView.update();
-    }
 
     private void appendRoad(Graph<String, String> graph, String identifier) {
         String lastVertex = ROOT;

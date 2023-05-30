@@ -108,7 +108,8 @@ public class UserClient implements Client, Consumer<LobbyDto> {
         if (!result.isJsonArray()) {
             throw new WebClientException("unsupported schema response: " + result);
         }
-        return result.getAsJsonArray().asList().stream().map(it -> User.builder()
+        return result.getAsJsonArray().asList().stream().map(it ->
+                User.builder()
                         .status(User.Status.valueOf(it.getAsJsonObject().get("status").getAsString()))
                         .username(it.getAsJsonObject().get("username").getAsString())
                         .websocketSessionId(it.getAsJsonObject().get("sessionId").getAsString())

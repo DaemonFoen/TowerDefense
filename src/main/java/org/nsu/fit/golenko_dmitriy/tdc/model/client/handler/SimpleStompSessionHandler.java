@@ -30,7 +30,7 @@ public class SimpleStompSessionHandler extends StompSessionHandlerAdapter {
     }
 
     @Override
-    public void handleException(StompSession session, StompCommand command, @NotNull StompHeaders headers, @NotNull byte[] payload, Throwable e) {
+    public void handleException(StompSession session, StompCommand command, @NotNull StompHeaders headers, byte @NotNull [] payload, Throwable e) {
         log.error("handleException() : session.getSessionId()=" + session.getSessionId() + ", with message : " + e.getMessage());
         exceptionListener.handleException(session, command, headers, payload, e);
     }

@@ -10,7 +10,7 @@ public interface HandleExceptionListener {
             @NotNull StompSession session,
             @NotNull StompCommand command,
             @NotNull StompHeaders headers,
-            @NotNull byte[] payload,
+            byte @NotNull [] payload,
             @NotNull Throwable e
     );
 }

@@ -8,9 +8,6 @@ class API {
     @SuppressWarnings("ConstantValue")
     private static final String ROOT = SCHEMA + "://" + DOMAIN + (PORT == null ? "" : ":" + PORT);
 
-    public static String getServerName() {
-        return ROOT;
-    }
 
     private static String getDestination(String relativePath) {
         return ROOT + relativePath;

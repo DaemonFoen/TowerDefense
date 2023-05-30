@@ -261,13 +261,13 @@ public class WebClient implements Client {
         }
 
         @Override
-        public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
+        public void afterConnected(@NotNull StompSession session, @NotNull StompHeaders connectedHeaders) {
             log.debug("afterConnected() : session=" + session + ", connectedHeaders=" + connectedHeaders);
         }
 
         @Override
-        public void handleException(StompSession session, StompCommand command,
-                StompHeaders headers, byte[] payload, Throwable e) {
+        public void handleException(@NotNull StompSession session, @NotNull StompCommand command,
+                @NotNull StompHeaders headers, byte @NotNull [] payload, @NotNull Throwable e) {
             log.error("handleException() : session=" + session + ", command=" + command + ", headers=" + headers
                     + ", payload=" + Arrays.toString(payload) + ", e.getMessage=" + e.getMessage());
             exceptionListener.onException(
@@ -281,7 +281,7 @@ public class WebClient implements Client {
         }
 
         @Override
-        public void handleTransportErrorListener(StompSession session, Throwable e) {
+        public void handleTransportErrorListener(@NotNull StompSession session, @NotNull Throwable e) {
             log.error("handleTransportErrorListener() : session=" + session + ", e.getMessage()" + e.getMessage());
             disconnectedListener.onDisconnect(
                     ExceptionContext.builder()
