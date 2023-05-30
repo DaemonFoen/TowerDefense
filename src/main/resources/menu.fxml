@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="900.0" style="-fx-background-color: #85c3b2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.nsu.fit.golenko_dmitriy.tdc.view.MainMenuView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="900.0" style="-fx-background-color: #abd4c2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="290.0" layoutY="62.0" prefHeight="94.0" prefWidth="320.0" text=" TD" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="newGameBtn" layoutX="355.0" layoutY="285.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="New game" />
-      <Button fx:id="scoreBtn" layoutX="710.0" layoutY="782.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="176.0" text="Score" />
+      <Button fx:id="newGameBtn" layoutX="355.0" layoutY="285.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Create lobby" />
       <Button fx:id="joinBtn" layoutX="355.0" layoutY="371.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Join" />
       <Button fx:id="exitBtn" layoutX="355.0" layoutY="460.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Exit" />
       <Label fx:id="usernameLabel" alignment="CENTER" layoutX="355.0" layoutY="163.0" prefHeight="54.0" prefWidth="190.0" text="Username" />

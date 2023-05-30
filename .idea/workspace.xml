@@ -4,24 +4,68 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/TDServerHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AuthView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LoginView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainMenuView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/RegistrationView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AuthView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/LoginView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="View">
+      <change afterPath="$PROJECT_DIR$/smartgraph.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smartgraph.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/AuthException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/GeneralClientException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/HandlerException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/RegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/WebClientException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/API.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/GameClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/WebClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/AuthRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/AuthResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/LobbyDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/MessageDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/AfterConnectedListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/ConsistentHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/ConsumableHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/HandleExceptionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/HandleTransportErrorListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/OnFieldUpdateListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/SimpleStompSessionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/model/ExceptionContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/model/Lobby.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/EntityDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/FieldDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/GameStartDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/TowerCreateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/Field.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/Road.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/UserData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnAuthCallbackListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnDisconnectedListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnExceptionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnGameEndListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnGameStartCallbackListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AbstractView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/FriendView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LobbyView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/friend.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icon.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/TDServerHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AuthView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AuthView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/RegistrationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/RegistrationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/auth.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/RegistrationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/registration.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +108,7 @@
         <option value="JavaFXApplication" />
         <option value="package.json" />
         <option value="Interface" />
+        <option value="Record" />
         <option value="Class" />
       </list>
     </option>
@@ -86,29 +131,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dmitriy/Desktop/SceneBuilder.lnk&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.obiscr.chatgpt.settings.ChatGPT&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Users/Dmitriy/CLionProjects/TowerDefenseClient/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.42395297",
+    "settings.editor.selected.configurable": "GrepConsole",
+    "spring.configuration.checksum": "c217b75a6284c0b40821bc08880aa55b",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient\src\main\java\org\nsu\fit\golenko_dmitriy\tdc\view" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient\src\main\resources" />
+      <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient" />
+      <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient\src\main\resources" />
+      <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient\src\main\java\org\nsu\fit\golenko_dmitriy\tdc\view" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -248,8 +299,26 @@
       <workItem from="1682151273695" duration="9281000" />
       <workItem from="1682234996849" duration="21342000" />
       <workItem from="1682259990494" duration="485000" />
-      <workItem from="1682334643501" duration="8998000" />
+      <workItem from="1682334643501" duration="10998000" />
+      <workItem from="1682421334961" duration="1000" />
+      <workItem from="1682435634470" duration="1076000" />
+      <workItem from="1682532658328" duration="311000" />
+      <workItem from="1682532978000" duration="1227000" />
+      <workItem from="1682583865706" duration="976000" />
+      <workItem from="1682604824433" duration="1082000" />
+      <workItem from="1682605921431" duration="775000" />
+      <workItem from="1684760076510" duration="35558000" />
+      <workItem from="1685019173254" duration="3272000" />
+      <workItem from="1685381494567" duration="24100000" />
     </task>
+    <task id="LOCAL-00001" summary="View">
+      <created>1682353607431</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682353607431</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,14 +335,22 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="View" />
+    <option name="LAST_COMMIT_MESSAGE" value="View" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java</url>
-          <line>18</line>
+          <line>17</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="7" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

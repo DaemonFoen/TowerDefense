@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="900.0" style="-fx-background-color: #abd4c2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="health" alignment="CENTER" layoutX="675.0" layoutY="55.0" prefHeight="70.0" prefWidth="190.0" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="createTowerButton" layoutX="36.0" layoutY="767.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="164.0" text="Create tower">
+         <font>
+            <Font name="Liberation Mono Italic" size="12.0" />
+         </font></Button>
+      <Text fx:id="guildTowerHealth" fill="#90f210" layoutX="345.0" layoutY="807.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999" textAlignment="CENTER" wrappingWidth="248.40625">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font></Text>
+      <TextField fx:id="cellPromptField" layoutX="220.0" layoutY="767.0" prefHeight="44.0" prefWidth="84.0" />
+      <HBox fx:id="box" layoutX="36.0" layoutY="42.0" prefHeight="670.0" prefWidth="820.0" />
+      <Label layoutX="439.0" layoutY="746.0" prefHeight="17.0" prefWidth="127.0" text="Health">
+         <font>
+            <Font name="Liberation Mono" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="exitButton" layoutX="701.0" layoutY="767.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="164.0" text="exit">
+         <font>
+            <Font name="Liberation Mono Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,18 +1,13 @@
 package org.nsu.fit.golenko_dmitriy.tdc.view;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import org.nsu.fit.golenko_dmitriy.tdc.Main;
+import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
-public class AuthView {
+public class AuthView implements AbstractView {
 
     @FXML
     private ResourceBundle resources;
@@ -34,19 +29,13 @@ public class AuthView {
     @FXML
     void initialize() {
         loginBtn.setOnAction(event -> {
-            try {
-                MainView.setScene(FXMLLoader.load(Objects.requireNonNull(MainView.class.getResource("/LoginView.fxml"))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            MainView.setView(ViewStage.LOGIN);
         });
+
         regBtn.setOnAction(event -> {
-            try {
-                MainView.setScene(FXMLLoader.load(Objects.requireNonNull(MainView.class.getResource("/RegistrationView.fxml"))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            MainView.setView(ViewStage.REG);
         });
+
         exitBtn.setOnAction(event -> System.exit(0));
     }
 }
