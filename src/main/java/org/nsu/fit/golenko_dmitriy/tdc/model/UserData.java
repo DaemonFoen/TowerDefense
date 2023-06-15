@@ -1,18 +1,17 @@
-package org.nsu.fit.golenko_dmitriy.tdc.model.client.dto;
+package org.nsu.fit.golenko_dmitriy.tdc.model;
+
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AuthRequest {
-    String identifier;
-    String password;
+public class UserData {
+    String username;
+    long score;
 }

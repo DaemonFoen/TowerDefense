@@ -1,67 +1,80 @@
 package org.nsu.fit.golenko_dmitriy.tdc.presenter;
 
 import javafx.application.Platform;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.jetbrains.annotations.NotNull;
-import org.nsu.fit.golenko_dmitriy.tdc.model.client.UserClient;
-import org.nsu.fit.golenko_dmitriy.tdc.model.client.WebClient;
-import org.nsu.fit.golenko_dmitriy.tdc.model.client.model.ExceptionContext;
-import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.UserData;
+import org.nsu.fit.golenko_dmitriy.tdc.exception.AuthException;
+import org.nsu.fit.golenko_dmitriy.tdc.exception.RegistrationException;
+import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.FiledData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 @Log4j2
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-public class Presenter implements OnAuthCallbackListener, OnGameStartCallbackListener, OnExceptionListener,
-        OnDisconnectedListener {
-
-    WebClient webClient;
+public class Presenter implements AuthListener, ExceptionListener, UpdateListener,
+        GameStartListener,
+        GameEndListener {
 
     @Getter
-    UserData userData;
-
+    private UserData userData;
+    @Setter
+    private UpdateListener updateListener;
+    private Game game;
 
     public void authorization(String login, String password){
-        webClient = WebClient.authentication(login, password, this, this);
-        authorizedSuccessfully(webClient, login);
+        try {
+            //TODO логин в бд
+        } catch (AuthException e){
+            MainView.showAlert(e.getClass().toString(), e.getMessage());
+        }
+        authorizedSuccessfully(login);
     }
 
     public void registration(String login, String password){
-        webClient = WebClient.registration(login, password, this, this);
-        authorizedSuccessfully(webClient, login);
+        try {
+            //TODO как и в авторизации
+        } catch (RegistrationException e){
+            MainView.showAlert(e.getClass().toString(),e.getMessage());
+        }
+        authorizedSuccessfully(login);
     }
 
     @Override
-    public void authorizedSuccessfully(WebClient client, String username) {
-        this.userData = new UserData(client, username, null);
+    public void authorizedSuccessfully(String username) {
+        userData = new UserData(username,0);
         MainView.setView(ViewStage.MENU, userData);
     }
 
     @Override
-    public void onDisconnect(@NotNull ExceptionContext data, @NotNull Throwable e) {
-        log.debug("onDisconnect() : " + data + ", e.getMessage()=" + e.getMessage());
+    public void exceptionHandling(String context, @NotNull Throwable e) {
         Platform.runLater(() -> MainView.showAlert(
                 "Session forced to crash!",
-                "Message: " + data + ", throwable=" + e
+                "Message: " + context + ", throwable=" + e
         ));
     }
 
     @Override
-    public void onException(@NotNull ExceptionContext data, @NotNull Throwable e) {
-        onDisconnect(data, e);
+    public void start() {
+        game = new Game(this,this);
+        game.start();
     }
 
     @Override
-    public void start() {
-        UserClient client = new UserClient(userData.getWebClient());
-        client.createLobby();
-        userData.setUserClient(client);
-        MainView.setView(ViewStage.GAME, userData);
+    public void update(FiledData data) {
+        updateListener.update(data);
     }
 
+    public void createTower(int id){
+        game.createTower(id);
+    }
+
+    @Override
+    public void end() {
+        //TODO score
+    }
 }

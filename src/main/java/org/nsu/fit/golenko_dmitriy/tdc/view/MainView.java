@@ -14,8 +14,8 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.Presenter;
-import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.UserData;
 
 @Log4j2
 public class MainView {
@@ -53,13 +53,13 @@ public class MainView {
                         load(Objects.requireNonNull(MainView.class.getResource("/login.fxml")), new LoginView()));
                 case GAME -> setScene(
                         load(Objects.requireNonNull(MainView.class.getResource("/game.fxml")), new GameView(userData)));
-                case LOBBY -> setScene(load(Objects.requireNonNull(MainView.class.getResource("/lobby.fxml")),
-                        new LobbyView(userData)));
+//                case LOBBY -> setScene(load(Objects.requireNonNull(MainView.class.getResource("/lobby.fxml")),
+//                        new LobbyView(userData)));
             }
         } catch (Throwable e) {
             log.debug("Stage : " + stage.toString() + "error message : " + e.getMessage());
             e.printStackTrace();
-            showAlert(e.toString(), e.getMessage());
+            showAlert(e.getClass().toString(), e.getMessage());
         }
     }
 

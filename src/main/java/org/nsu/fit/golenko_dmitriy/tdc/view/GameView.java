@@ -25,21 +25,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import org.nsu.fit.golenko_dmitriy.tdc.exception.WebClientException;
-import org.nsu.fit.golenko_dmitriy.tdc.model.client.GameClient;
-import org.nsu.fit.golenko_dmitriy.tdc.model.client.UserClient;
-import org.nsu.fit.golenko_dmitriy.tdc.model.client.handler.OnFieldUpdateListener;
-import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.Entity;
-import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.Field;
-import org.nsu.fit.golenko_dmitriy.tdc.model.game.gameEntities.UserData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
+import org.nsu.fit.golenko_dmitriy.tdc.model.FiledData;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.UpdateListener;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 @Log4j2
-public class GameView implements AbstractView, Initializable, OnFieldUpdateListener{
+public class GameView implements AbstractView, Initializable, UpdateListener {
     public static final String ROOT = "guildhall";
     public static Vertex<String> ROOT_VERTEX;
-    private final UserClient userClient;
-    private final GameClient gameClient;
     Graph<String, String> graph;
 
     Map<Long, Pair<Vertex<String>, Edge<String, String>>> entitiesObj = new HashMap<>();
@@ -70,21 +65,16 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
             return;
         }
         log.info("createTower() : cellId=" + cellId);
-        Thread thread = new Thread(() -> gameClient.createTower(cellId - 1));
+        Thread thread = new Thread(() -> MainView.getPresenter().createTower(cellId - 1));
         thread.start();
     }
 
     private SmartGraphPanel<String, String> graphView;
 
     public GameView(UserData data) {
-        try {
-            this.userClient = data.getUserClient();
-            this.gameClient = new GameClient(data.getWebClient(), userClient);
-            this.gameClient.setOnFieldUpdate(this);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            throw new WebClientException(e);
-        }
+//            this.userClient = data.getUserClient();
+//            this.gameClient = new GameClient(data.getWebClient(), userClient);
+            MainView.getPresenter().setUpdateListener(this);
     }
 
     public static SmartGraphPanel<String, String> initGraphView(Graph<String, String> graph) {
@@ -95,8 +85,8 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
         return graphView;
     }
 
-    public static String getCellNameByIndex(String identifier, int index) {
-        return index + "_" + identifier;
+    public static String getCellNameByIndex(int index) {
+        return index + "_";
     }
 
     public static String getCellNameByEntity(Entity entity) {
@@ -110,14 +100,14 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         exitButton.setOnAction(event -> {
-            gameClient.close();
-            userClient.close();
+//            gameClient.close();
+//            userClient.close();
             MainView.setView(ViewStage.MENU, MainView.getPresenter().getUserData());
         });
         createTowerButton.setOnAction(event -> createTower());
-        Field field = gameClient.start();
-        this.ROAD_LENGTH = field.getLength();
-        this.graph = initGraphField(userClient.getLobby().getMembers());
+        MainView.getPresenter().start();
+        this.ROAD_LENGTH = 13;
+        this.graph = initGraphField(List.of("Player"));
         this.graphView = initGraphView(graph);
         this.graphView.setVertexPosition(ROOT_VERTEX, graphView.getScaleX() / 2, graphView.getScaleY() / 2);
         graphView.setMinWidth(500);
@@ -127,30 +117,28 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
     }
 
     @Override
-    public void updated(Field data) {
-        if (data.getGuildhall().getHealth() <= 0) {
+    public void update(FiledData data) {
+        if (data.mainTower().getHealth() <= 0) {
             graphView.getStylableVertex(ROOT).setStyleClass("guildhall-dead");
         }
-        guildTowerHealth.setText(String.valueOf(data.getGuildhall().getHealth()));
-        data.getRoads().forEach((identifier, road) -> {
-            road.getEntities().forEach(it -> {
+        guildTowerHealth.setText(String.valueOf(data.mainTower().getHealth()));
+        data.road().getEntities().forEach(it -> {
                 entities.put(it.getId(), true);
                 if (!entitiesObj.containsKey(it.getId())) {
-                    createEntity(identifier, it);
+                    createEntity(it);
                     return;
                 }
-                updateEntity(identifier, it);
+                updateEntity(it);
             });
-        });
         entities.entrySet().stream().filter(t -> !t.getValue()).forEach(t -> removeEntity(t.getKey()));
         entities = entities.entrySet().stream().filter(Map.Entry::getValue).collect(Collectors.toMap(Map.Entry::getKey, t -> false));
         graphView.update();
     }
 
-    private void createEntity(String identifier, Entity entity) {
+    private void createEntity(Entity entity) {
         String start = getCellNameByEntity(entity);
         Vertex<String> vertexOr = insertVertex(start);
-        String end = getCellNameByIndex(identifier, entity.getCell());
+        String end = getCellNameByIndex(entity.getCell());
         Edge<String, String> edge = graph.insertEdge(end, start, "Entity_" + start);
         entitiesObj.put(entity.getId(), new Pair<>(vertexOr, edge));
         graphView.updateAndWait();
@@ -162,11 +150,10 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
         }
     }
 
-    private void updateEntity(String identifier, Entity entity) {
-        log.info("updateEntity(road=%s, entity=%s)".formatted(identifier, entity));
+    private void updateEntity(Entity entity) {
         String start = getCellNameByEntity(entity);
         graph.removeEdge(entitiesObj.get(entity.getId()).getValue());
-        String end = getCellNameByIndex(identifier, entity.getCell());
+        String end = getCellNameByIndex(entity.getCell());
         Edge<String, String> edge = graph.insertEdge(start, end, "Entity_" + start);
         entitiesObj.put(entity.getId(), new Pair<>(entitiesObj.get(entity.getId()).getKey(), edge));
     }
@@ -179,10 +166,10 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
     }
 
 
-    private void appendRoad(Graph<String, String> graph, String identifier) {
+    private void appendRoad(Graph<String, String> graph) {
         String lastVertex = ROOT;
         for (int i = 0; i < ROAD_LENGTH; ++i) {
-            String newVertex = getCellNameByIndex(identifier, i);
+            String newVertex = getCellNameByIndex(i);
             graph.insertVertex(newVertex);
             graph.insertEdge(lastVertex, newVertex, newVertex);
             lastVertex = newVertex;
@@ -192,7 +179,7 @@ public class GameView implements AbstractView, Initializable, OnFieldUpdateListe
     private Graph<String, String> initGraphField(List<String> members) {
         Graph<String, String> graph = new GraphEdgeList<>();
         ROOT_VERTEX = graph.insertVertex(ROOT);
-        members.forEach(identifier -> appendRoad(graph, identifier));
+        appendRoad(graph);
         return graph;
     }
 
