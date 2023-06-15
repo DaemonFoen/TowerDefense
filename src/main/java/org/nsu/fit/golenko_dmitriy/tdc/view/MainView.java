@@ -53,8 +53,6 @@ public class MainView {
                         load(Objects.requireNonNull(MainView.class.getResource("/login.fxml")), new LoginView()));
                 case GAME -> setScene(
                         load(Objects.requireNonNull(MainView.class.getResource("/game.fxml")), new GameView(userData)));
-//                case LOBBY -> setScene(load(Objects.requireNonNull(MainView.class.getResource("/lobby.fxml")),
-//                        new LobbyView(userData)));
             }
         } catch (Throwable e) {
             log.debug("Stage : " + stage.toString() + "error message : " + e.getMessage());
