@@ -4,59 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="annotation fix">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/EntityCreationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/EntityCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/FiledData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/AuthListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/ExceptionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/UpdateListener.java" afterDir="false" />
+    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="Added users db">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/score.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/AuthException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/AuthException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/GeneralClientException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/GameException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/HandlerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/HandlerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/RegistrationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/RegistrationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/exception/WebClientException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/API.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/GameClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/UserClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/WebClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/AuthRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/AuthResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/LobbyDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/dto/MessageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/UserData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/AfterConnectedListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/ConsistentHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/ConsumableHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/HandleExceptionListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/HandleTransportErrorListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/OnFieldUpdateListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/handler/SimpleStompSessionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/model/ExceptionContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/model/Lobby.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/client/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/Mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/EntityDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/FieldDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/GameStartDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/dto/TowerCreateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/Entity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/Field.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/Road.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/game/gameEntities/UserData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnAuthCallbackListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnDisconnectedListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnExceptionListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/OnGameStartCallbackListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameStartListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/PlayersDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/PlayersDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/UserData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/ExceptionListener.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/FriendView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LobbyView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +64,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a861407b-d4b0-4884-a00f-6e641d2bc936" />
+        <option name="url" value="https://github.com/DmitriyGolenko/TowerDefenseClient.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/Main.java" root0="FORCE_HIGHLIGHTING" />
@@ -312,7 +283,7 @@
       <workItem from="1685704564967" duration="73000" />
       <workItem from="1686673416705" duration="1814000" />
       <workItem from="1686678171627" duration="2547000" />
-      <workItem from="1686749036439" duration="21242000" />
+      <workItem from="1686749036439" duration="32689000" />
     </task>
     <task id="LOCAL-00001" summary="View">
       <created>1682353607431</created>
@@ -335,7 +306,28 @@
       <option name="project" value="LOCAL" />
       <updated>1685412657665</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Removed NET">
+      <created>1686836738175</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686836738175</updated>
+    </task>
+    <task id="LOCAL-00005" summary="part of the last commit">
+      <created>1686836844378</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686836844378</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added users db">
+      <created>1686842542693</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686842542693</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,14 +348,17 @@
     <MESSAGE value="View" />
     <MESSAGE value="All" />
     <MESSAGE value="annotation fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="annotation fix" />
+    <MESSAGE value="Removed NET" />
+    <MESSAGE value="part of the last commit" />
+    <MESSAGE value="Added users db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added users db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java</url>
-          <line>17</line>
+          <line>18</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

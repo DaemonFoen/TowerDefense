@@ -4,26 +4,27 @@ import lombok.Getter;
 import lombok.Setter;
 import org.nsu.fit.golenko_dmitriy.tdc.exception.AuthException;
 import org.nsu.fit.golenko_dmitriy.tdc.model.PlayersDB;
+import org.nsu.fit.golenko_dmitriy.tdc.model.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
 import org.nsu.fit.golenko_dmitriy.tdc.model.FiledData;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
-public class Presenter implements AuthListener, UpdateListener,
-        GameStartListener,
-        GameEndListener {
-
+public class Presenter implements AuthListener, UpdateListener, GameStartListener, GameEndListener {
     @Getter
     private UserData userData;
     @Setter
     private UpdateListener updateListener;
     @Setter
     private Game game;
-    private final PlayersDB database;
+    private final PlayersDB playersDatabase;
+
+    private final ScoreDB scoreDatabase;
 
     public Presenter(){
-        database = new PlayersDB();
+        playersDatabase = new PlayersDB();
+        scoreDatabase = new ScoreDB();
     }
 
 
@@ -32,7 +33,7 @@ public class Presenter implements AuthListener, UpdateListener,
             if (login.isEmpty() || password.isEmpty()){
                 throw new AuthException("Incorrect login or password field");
             }
-            if (!database.auth(login, password)){
+            if (playersDatabase.auth(login, password) == null){
                 MainView.setView(ViewStage.LOGIN);
                 throw new AuthException("Undefined login");
             }
@@ -48,31 +49,22 @@ public class Presenter implements AuthListener, UpdateListener,
             if (login.isEmpty() || password.isEmpty()){
                 throw new AuthException("Incorrect login or password field");
             }
-            if (database.auth(login,password)){
+            if (playersDatabase.userExist(login)){
                 throw new AuthException("User is already exist");
             }
         } catch (AuthException e){
             MainView.showAlert(e.getClass().toString(),e.getMessage());
             return;
         }
-        database.addUser(login,password);
+        playersDatabase.addUser(login,password);
         authorizedSuccessfully(login);
     }
 
     @Override
     public void authorizedSuccessfully(String username) {
-        //TODO SCORE DB
-        userData = new UserData(username,0);
+        userData = new UserData(username,Long.parseLong(scoreDatabase.score(username)));
         MainView.setView(ViewStage.MENU, userData);
     }
-
-//    @Override
-//    public void exceptionHandling(String context, @NotNull Throwable e) {
-//        Platform.runLater(() -> MainView.showAlert(
-//                "Session forced to crash!",
-//                "Message: " + context + ", throwable=" + e
-//        ));
-//    }
 
     @Override
     public void start() {
