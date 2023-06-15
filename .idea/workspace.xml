@@ -4,30 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="Add score db">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/ScoreView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="Add Score View">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/EntityCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/EntityCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/FiledData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/FiledData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Road.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Road.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameEndListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameEndListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameStartListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AuthView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AuthView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MenuView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/RegistrationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/RegistrationView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/score.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,17 +26,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="TowerDefenseClient" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="TowerDefenseClient" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -106,26 +75,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Users/Dmitriy/CLionProjects/TowerDefenseClient/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.42395297&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;GrepConsole&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;c217b75a6284c0b40821bc08880aa55b&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Users/Dmitriy/CLionProjects/TowerDefenseClient/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.42395297",
+    "settings.editor.selected.configurable": "GrepConsole",
+    "spring.configuration.checksum": "c217b75a6284c0b40821bc08880aa55b",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient\src\main\resources" />
@@ -296,7 +265,7 @@
       <workItem from="1685704564967" duration="73000" />
       <workItem from="1686673416705" duration="1814000" />
       <workItem from="1686678171627" duration="2547000" />
-      <workItem from="1686749036439" duration="51519000" />
+      <workItem from="1686749036439" duration="51930000" />
     </task>
     <task id="LOCAL-00001" summary="View">
       <created>1682353607431</created>
@@ -347,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686848923132</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add Score View">
+      <created>1686872014844</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1686872014844</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +348,8 @@
     <MESSAGE value="part of the last commit" />
     <MESSAGE value="Added users db" />
     <MESSAGE value="Add score db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add score db" />
+    <MESSAGE value="Add Score View" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Score View" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -32,15 +32,8 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok:1.18.26")
     testCompileOnly("org.projectlombok:lombok:1.18.26")
 
-    implementation("org.springframework.boot:spring-boot-autoconfigure:3.0.5")
     implementation("org.springframework.boot:spring-boot-starter-websocket:3.0.5")
-    implementation("org.springframework.boot:spring-boot-autoconfigure-processor:3.0.5")
-    testImplementation("org.springframework.boot:spring-boot-test-autoconfigure:3.0.5")
-    testImplementation("org.springframework:spring-test:6.0.8")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:3.0.5")
-
     implementation("com.google.code.gson:gson:2.10.1")
-
     implementation 'com.brunomnsilva:smartgraph:1.0.0'
 
     javafx {
