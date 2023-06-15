@@ -4,17 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="Added users db">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/score.txt" afterDir="false" />
+    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="Add score db">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/ScoreView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/PlayersDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/PlayersDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/UserData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/ExceptionListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/EntityCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/EntityCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/FiledData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/FiledData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Road.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Road.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameEndListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameEndListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameStartListener.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AuthView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/AuthView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/MenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/RegistrationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/RegistrationView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/score.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +69,8 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="package.json" />
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -283,7 +296,7 @@
       <workItem from="1685704564967" duration="73000" />
       <workItem from="1686673416705" duration="1814000" />
       <workItem from="1686678171627" duration="2547000" />
-      <workItem from="1686749036439" duration="32689000" />
+      <workItem from="1686749036439" duration="51519000" />
     </task>
     <task id="LOCAL-00001" summary="View">
       <created>1682353607431</created>
@@ -327,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686842542693</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add score db">
+      <created>1686848923132</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1686848923132</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,14 +371,15 @@
     <MESSAGE value="Removed NET" />
     <MESSAGE value="part of the last commit" />
     <MESSAGE value="Added users db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added users db" />
+    <MESSAGE value="Add score db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add score db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/Main.java</url>
-          <line>18</line>
+          <line>16</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

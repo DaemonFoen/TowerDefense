@@ -24,12 +24,9 @@ public class RegistrationView implements AbstractView {
 
     @FXML
     void initialize() {
-        regBtn.setOnAction(event -> {
-            MainView.getPresenter().registration(loginField.getText(), passwordField.getText());
-        });
-        backBtn.setOnAction(event -> {
-           MainView.setView(ViewStage.AUTH);
-        });
+        regBtn.setOnAction(
+                event -> MainView.getPresenter().registration(loginField.getText(), passwordField.getText()));
+        backBtn.setOnAction(event -> MainView.setView(ViewStage.AUTH));
         exitBtn.setOnAction(event -> System.exit(0));
     }
 }

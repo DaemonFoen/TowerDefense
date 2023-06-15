@@ -9,7 +9,7 @@ public class EntityCreator {
                 return new Entity(ID++,"main",-1, 200, 0, 0, 0,0, 0, System.currentTimeMillis(), System.currentTimeMillis());
             }
             case DEFAULT_ENEMY -> {
-                return new Entity(ID++,"default_enemy",-1, 15, 35, 500, 250,1, 1, System.currentTimeMillis(), System.currentTimeMillis());
+                return new Entity(ID++,"default_enemy",-1, 15, 5, 500, 250,1, 1, System.currentTimeMillis(), System.currentTimeMillis());
             }
             case DEFAULT_TOWER -> {
                 return new Entity(ID++,"default_tower",-1, 75, 15, 500, 300,1, 0, System.currentTimeMillis(), System.currentTimeMillis());

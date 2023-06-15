@@ -12,10 +12,10 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="newGameBtn" layoutX="355.0" layoutY="285.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Create lobby" />
-      <Button fx:id="joinBtn" layoutX="355.0" layoutY="371.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Join" />
-      <Button fx:id="exitBtn" layoutX="355.0" layoutY="460.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Exit" />
+      <Button fx:id="newGameButton" layoutX="355.0" layoutY="285.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Create lobby" />
+      <Button fx:id="scoreButton" layoutX="355.0" layoutY="371.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Score" />
+      <Button fx:id="exitButton" layoutX="355.0" layoutY="460.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="Exit" />
       <Label fx:id="usernameLabel" alignment="CENTER" layoutX="355.0" layoutY="163.0" prefHeight="54.0" prefWidth="190.0" text="Username" />
-      <Button fx:id="logoutBtn" layoutX="736.0" layoutY="55.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Log out" />
+      <Button fx:id="logoutButton" layoutX="736.0" layoutY="55.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Log out" />
    </children>
 </AnchorPane>

@@ -9,11 +9,9 @@ import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 
 public class Main extends Application {
-
     public static void main(String[] args) {
         Application.launch();
     }
-
     @Override
     public void start(Stage stage) {
         MainView.initView(stage);

@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.Presenter;
 
 @Log4j2
@@ -37,10 +36,6 @@ public class MainView {
     }
 
     public static void setView(MainView.ViewStage stage) {
-        setView(stage, null);
-    }
-
-    public static void setView(MainView.ViewStage stage, UserData userData) {
         try {
             switch (stage) {
                 case AUTH -> setScene(
@@ -48,11 +43,13 @@ public class MainView {
                 case REG -> setScene(load(Objects.requireNonNull(MainView.class.getResource("/registration.fxml")),
                         new RegistrationView()));
                 case MENU -> setScene(
-                        load(Objects.requireNonNull(MainView.class.getResource("/menu.fxml")), new MenuView(userData)));
+                        load(Objects.requireNonNull(MainView.class.getResource("/menu.fxml")), new MenuView(presenter.getUserData())));
                 case LOGIN -> setScene(
                         load(Objects.requireNonNull(MainView.class.getResource("/login.fxml")), new LoginView()));
                 case GAME -> setScene(
-                        load(Objects.requireNonNull(MainView.class.getResource("/game.fxml")), new GameView(userData)));
+                        load(Objects.requireNonNull(MainView.class.getResource("/game.fxml")), new GameView()));
+                case SCORE -> setScene(
+                        load(Objects.requireNonNull(MainView.class.getResource("/score.fxml")), new ScoreView()));
             }
         } catch (Throwable e) {
             log.debug("Stage : " + stage.toString() + "error message : " + e.getMessage());
@@ -83,5 +80,5 @@ public class MainView {
         stage.show();
     }
 
-    public enum ViewStage {AUTH, LOGIN, REG, MENU, LOBBY, GAME}
+    public enum ViewStage {AUTH, LOGIN, REG, MENU, GAME, SCORE}
 }

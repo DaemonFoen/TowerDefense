@@ -2,16 +2,29 @@ package org.nsu.fit.golenko_dmitriy.tdc.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 
 public class Road {
     private final ModelGameListener listener;
-    private final int length = 10;
+    @Getter
+    private final int length = 15;
     private int[] allyDamage;
     private int[] enemyDamage;
+    @Getter
     private final Entity mainTower;
     private final List<Entity> enemies;
     private final List<Entity> allies;
+    @Getter
+    private int defeatedEnemy = 0;
+
+    public void clear(){
+        enemies.clear();
+        allies.clear();
+        allyDamage = new int[length];
+        enemyDamage = new int[length];
+        defeatedEnemy = 0;
+    }
 
     public Road(ModelGameListener listener) {
         this.enemies = new ArrayList<>();
@@ -51,11 +64,13 @@ public class Road {
     private void takeDamage(List<Entity> entities, int[] damage) {
         entities.forEach(it -> it.acceptDamage(damage[it.getCell()]));
         List<Entity> list = entities.stream().filter(Entity::isAlive).toList();
+        int allEntity = entities.size();
         entities.clear();
         entities.addAll(list);
+        defeatedEnemy += allEntity - list.size();
     }
 
-    public synchronized int updateHealth() {
+    public int updateHealth() {
         allyDamage = new int[length];
         enemyDamage = new int[length];
         calculateDamage(enemies, enemyDamage);
@@ -65,7 +80,7 @@ public class Road {
         return enemyDamage[0];
     }
 
-    public synchronized void updatePosition() {
+    public void updatePosition() {
         enemies.forEach(Entity::makeStep);
     }
 
@@ -92,11 +107,4 @@ public class Road {
         }
     }
 
-    public int getLength() {
-        return length;
-    }
-
-    public Entity getMainTower() {
-        return mainTower;
-    }
 }

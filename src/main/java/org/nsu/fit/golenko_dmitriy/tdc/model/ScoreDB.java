@@ -2,6 +2,7 @@ package org.nsu.fit.golenko_dmitriy.tdc.model;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ScoreDB extends Database {
     public ScoreDB(){
@@ -9,8 +10,11 @@ public class ScoreDB extends Database {
         DATABASE_FILE = "src/main/resources/score.txt";
         loadDatabase();
     }
+    public Map<String,String> score(){
+        return dataMap;
+    }
 
-    public String score(String username) {
+    public String userScore(String username) {
         String score = dataMap.get(username);
         if (score == null){
             addUser(username,"0");

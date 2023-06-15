@@ -7,22 +7,23 @@ import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 public class MenuView implements AbstractView {
+
     private final UserData userData;
 
     @FXML
     public Label usernameLabel;
 
     @FXML
-    public Button logoutBtn;
+    public Button logoutButton;
 
     @FXML
-    private Button exitBtn;
+    private Button exitButton;
 
     @FXML
-    private Button joinBtn;
+    private Button scoreButton;
 
     @FXML
-    private Button newGameBtn;
+    private Button newGameButton;
 
     public MenuView(UserData data) {
         this.userData = data;
@@ -30,15 +31,11 @@ public class MenuView implements AbstractView {
 
     @FXML
     void initialize() {
-
         usernameLabel.setText(userData.username());
-        newGameBtn.setOnAction(event -> {
-            MainView.setView(ViewStage.GAME, userData);
-        });
-        logoutBtn.setOnAction(event -> {
-            MainView.setView(ViewStage.AUTH);
-        });
-        exitBtn.setOnAction(event -> System.exit(0));
+        newGameButton.setOnAction(event -> MainView.setView(ViewStage.GAME));
+        logoutButton.setOnAction(event -> MainView.setView(ViewStage.AUTH));
+        scoreButton.setOnAction(event -> MainView.setView(ViewStage.SCORE));
+        exitButton.setOnAction(event -> System.exit(0));
     }
 
 }

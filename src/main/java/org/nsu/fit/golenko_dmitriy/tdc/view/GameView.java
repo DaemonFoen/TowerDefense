@@ -21,11 +21,9 @@ import lombok.extern.log4j.Log4j2;
 
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
 import org.nsu.fit.golenko_dmitriy.tdc.model.FiledData;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.UpdateListener;
@@ -36,7 +34,6 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
     public static final String ROOT = "guildhall";
     public static Vertex<String> ROOT_VERTEX;
     Graph<String, String> graph;
-
     Map<Long, Pair<Vertex<String>, Edge<String, String>>> entitiesObj = new HashMap<>();
     Map<Long, Boolean> entities = new HashMap<>();
     private int ROAD_LENGTH;
@@ -48,6 +45,8 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
     private Button exitButton;
     @FXML
     private Text guildTowerHealth;
+    @FXML
+    private Text score;
     @FXML
     private HBox box;
 
@@ -64,17 +63,14 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
             cellPromptField.setText("");
             return;
         }
-        log.info("createTower() : cellId=" + cellId);
         Thread thread = new Thread(() -> MainView.getPresenter().createTower(cellId - 1));
         thread.start();
     }
 
     private SmartGraphPanel<String, String> graphView;
 
-    public GameView(UserData data) {
-//            this.userClient = data.getUserClient();
-//            this.gameClient = new GameClient(data.getWebClient(), userClient);
-            MainView.getPresenter().setUpdateListener(this);
+    public GameView() {
+        MainView.getPresenter().setUpdateListener(this);
     }
 
     public static SmartGraphPanel<String, String> initGraphView(Graph<String, String> graph) {
@@ -93,26 +89,23 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
         return "Entity_" + entity.getId();
     }
 
-    public static String getCellNameByEntity(Long id) {
-        return "Entity_" + id;
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         exitButton.setOnAction(event -> {
-//            gameClient.close();
-//            userClient.close();
-            MainView.setView(ViewStage.MENU, MainView.getPresenter().getUserData());
+            MainView.getPresenter().end(Integer.parseInt(score.getText()));
+            MainView.setView(ViewStage.MENU);
         });
         createTowerButton.setOnAction(event -> createTower());
-        MainView.getPresenter().start();
-        this.ROAD_LENGTH = 13;
-        this.graph = initGraphField(List.of("Player"));
+        Thread game = new Thread(() -> MainView.getPresenter().start());
+        this.ROAD_LENGTH = MainView.getPresenter().getRoadLen();
+        this.graph = initGraphField();
         this.graphView = initGraphView(graph);
         this.graphView.setVertexPosition(ROOT_VERTEX, graphView.getScaleX() / 2, graphView.getScaleY() / 2);
-        graphView.setMinWidth(500);
-        graphView.setMaxHeight(500);
+        graphView.setMinWidth(700);
+        graphView.setMaxHeight(700);
         box.getChildren().add(graphView);
+        log.info("Game initialize");
+        game.start();
         Platform.runLater(graphView::init);
     }
 
@@ -121,6 +114,7 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
         if (data.mainTower().getHealth() <= 0) {
             graphView.getStylableVertex(ROOT).setStyleClass("guildhall-dead");
         }
+        score.setText(String.valueOf(data.DefeatedEnemy()*5));
         guildTowerHealth.setText(String.valueOf(data.mainTower().getHealth()));
         data.road().getEntities().forEach(it -> {
                 entities.put(it.getId(), true);
@@ -176,7 +170,7 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
         }
     }
 
-    private Graph<String, String> initGraphField(List<String> members) {
+    private Graph<String, String> initGraphField() {
         Graph<String, String> graph = new GraphEdgeList<>();
         ROOT_VERTEX = graph.insertVertex(ROOT);
         appendRoad(graph);

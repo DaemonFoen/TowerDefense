@@ -1,5 +1,7 @@
 package org.nsu.fit.golenko_dmitriy.tdc.presenter;
 
+import java.util.List;
+import java.util.Map.Entry;
 import lombok.Getter;
 import lombok.Setter;
 import org.nsu.fit.golenko_dmitriy.tdc.exception.AuthException;
@@ -11,7 +13,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
-public class Presenter implements AuthListener, UpdateListener, GameStartListener, GameEndListener {
+public class Presenter implements AuthListener, UpdateListener, GameEndListener{
     @Getter
     private UserData userData;
     @Setter
@@ -19,7 +21,7 @@ public class Presenter implements AuthListener, UpdateListener, GameStartListene
     @Setter
     private Game game;
     private final PlayersDB playersDatabase;
-
+    @Getter
     private final ScoreDB scoreDatabase;
 
     public Presenter(){
@@ -62,26 +64,34 @@ public class Presenter implements AuthListener, UpdateListener, GameStartListene
 
     @Override
     public void authorizedSuccessfully(String username) {
-        userData = new UserData(username,Long.parseLong(scoreDatabase.score(username)));
-        MainView.setView(ViewStage.MENU, userData);
+        userData = new UserData(username,Long.parseLong(scoreDatabase.userScore(username)));
+        MainView.setView(ViewStage.MENU);
     }
 
-    @Override
+    public List<Entry<String,String>> getScore(){
+        return scoreDatabase.score().entrySet().stream().toList();
+    }
+
     public void start() {
         game.start();
     }
-
+    public int getRoadLen(){
+        return game.getRoadLen();
+    }
     @Override
     public void update(FiledData data) {
         updateListener.update(data);
     }
-
     public void createTower(int id){
         game.createTower(id);
     }
-
     @Override
-    public void end() {
-        //TODO score
+    public void end(int score) {
+        if (game.isLoop()){
+            game.end();
+        }
+        if (Integer.parseInt(scoreDatabase.userScore(userData.username())) < score){
+            scoreDatabase.addUser(userData.username(), String.valueOf(score));
+        }
     }
 }

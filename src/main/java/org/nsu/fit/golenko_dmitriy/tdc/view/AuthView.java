@@ -8,19 +8,14 @@ import javafx.scene.layout.AnchorPane;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 public class AuthView implements AbstractView {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private AnchorPane AuthPane;
-
     @FXML
     private Button exitBtn;
-
     @FXML
     private Button loginBtn;
     @FXML
@@ -28,14 +23,8 @@ public class AuthView implements AbstractView {
 
     @FXML
     void initialize() {
-        loginBtn.setOnAction(event -> {
-            MainView.setView(ViewStage.LOGIN);
-        });
-
-        regBtn.setOnAction(event -> {
-            MainView.setView(ViewStage.REG);
-        });
-
+        loginBtn.setOnAction(event -> MainView.setView(ViewStage.LOGIN));
+        regBtn.setOnAction(event -> MainView.setView(ViewStage.REG));
         exitBtn.setOnAction(event -> System.exit(0));
     }
 }

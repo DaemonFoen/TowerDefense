@@ -24,12 +24,9 @@ public class LoginView implements AbstractView {
 
     @FXML
     void initialize() {
-        loginBtn.setOnAction(event -> {
-            MainView.getPresenter().authorization(loginField.getText(), passwordField.getText());
-        });
-        backBtn.setOnAction(event -> {
-            MainView.setView(ViewStage.AUTH);
-        });
+        loginBtn.setOnAction(
+                event -> MainView.getPresenter().authorization(loginField.getText(), passwordField.getText()));
+        backBtn.setOnAction(event -> MainView.setView(ViewStage.AUTH));
         exitBtn.setOnAction(event -> System.exit(0));
     }
 
