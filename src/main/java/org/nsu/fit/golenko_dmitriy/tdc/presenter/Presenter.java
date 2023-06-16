@@ -55,7 +55,7 @@ public class Presenter implements ActionListener {
     public void createTower(int cell) {
         game.createTower(cell);
     }
-w
+
     @Override
     public void end() {
         actionListener.end();
