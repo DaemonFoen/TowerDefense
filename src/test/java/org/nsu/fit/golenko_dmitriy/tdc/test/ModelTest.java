@@ -12,6 +12,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameEndListener;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.UpdateListener;
 
 public class ModelTest {
+
     @Test
     public void gameEndTest(){
         class TestListener implements GameEndListener, UpdateListener {

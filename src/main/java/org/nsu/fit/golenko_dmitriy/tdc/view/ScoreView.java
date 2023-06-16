@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j2;
+import org.nsu.fit.golenko_dmitriy.tdc.model.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 @Log4j2
@@ -23,6 +24,9 @@ public class ScoreView implements AbstractView {
     public TableView<User> scoreTable;
     @FXML
     void initialize() {
+        // CR: make score db singleton (maybe also user db)
+//        record Score(String userName, int score) {}
+//        List<Score> scores = ScoreDB.getInstance().getScores();
         List<User> users = MainView.getPresenter().getScore().stream().map(it -> new User(it.getKey(), it.getValue())).toList();
         scoreTable.setItems(FXCollections.observableArrayList(users));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

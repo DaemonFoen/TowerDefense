@@ -7,6 +7,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 
 public class Road {
     private final ModelGameListener listener;
+    // CR: move to config
     @Getter
     private final int length = 15;
     private int[] allyDamage;
@@ -63,18 +64,18 @@ public class Road {
 
     private void takeDamage(List<Entity> entities, int[] damage) {
         entities.forEach(it -> it.acceptDamage(damage[it.getCell()]));
-        List<Entity> list = entities.stream().filter(Entity::isAlive).toList();
+        List<Entity> alive = entities.stream().filter(Entity::isAlive).toList();
         int allEntity = entities.size();
         entities.clear();
-        entities.addAll(list);
-        defeatedEnemy += allEntity - list.size();
+        entities.addAll(alive);
+        defeatedEnemy += allEntity - alive.size();
     }
 
     private int updateHealth() {
         allyDamage = new int[length];
+        calculateDamage(allies, allyDamage);
         enemyDamage = new int[length];
         calculateDamage(enemies, enemyDamage);
-        calculateDamage(allies, allyDamage);
         takeDamage(enemies, allyDamage);
         takeDamage(allies, enemyDamage);
         return enemyDamage[0];
@@ -85,6 +86,7 @@ public class Road {
     }
 
     private void calculateDamage(List<Entity> entities, int[] damage) {
+        // CR: simplify
         entities.forEach(it -> sumOnRange(
                 it.getCell() - it.getActionRadius(),
                 it.getCell() + it.getActionRadius(),
@@ -92,8 +94,9 @@ public class Road {
         ));
     }
 
-    private void sumOnRange(int start, int end, int value, int[] array) {
-        if (value == 0) {
+    private void sumOnRange(int start, int end, int damage, int[] array) {
+        assert damage >= 0;
+        if (damage == 0) {
             return;
         }
         if (start < 0) {
@@ -103,7 +106,7 @@ public class Road {
             end = length;
         }
         for (int i = start; i < end; ++i) {
-            array[i] += value;
+            array[i] += damage;
         }
     }
 

@@ -6,6 +6,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.model.Entity.Team;
 public class EntityCreator {
     public static Entity create(Type type) throws EntityCreationException {
         switch (type){
+            // CR: move entity params to config
             case MAIN -> {
                 return new Entity(ID++,"main",-1, 200, 0, 0, 0,0, Team.ALLY, System.currentTimeMillis(), System.currentTimeMillis());
             }

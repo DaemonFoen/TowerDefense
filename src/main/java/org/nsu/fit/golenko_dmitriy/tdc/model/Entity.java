@@ -17,6 +17,7 @@ public class Entity {
     private Team team;
     private long lastAttackUpdated;
     private long lastStepUpdated;
+
     public int getDamage() {
         long current = System.currentTimeMillis();
         if (lastAttackUpdated + attackReload > current){

@@ -21,6 +21,7 @@ public class Game implements ModelGameListener {
         this.endListener = endListener;
     }
     public void start() {
+        // CR: move to config
         int updateCooldown = 600;
         int enemySpawnCooldown = 5000;
         loop = true;
@@ -48,9 +49,11 @@ public class Game implements ModelGameListener {
         road.clear();
         endListener.end(road.getDefeatedEnemy());
     }
+    // CR: do not add methods for test only
     public void createTower(int cell) throws EntityCreationException {
         road.insert(EntityCreator.create(Type.DEFAULT_TOWER), cell);
     }
+    // CR: do not add methods for test only
     public int getRoadLen() {
         return road.getLength();
     }

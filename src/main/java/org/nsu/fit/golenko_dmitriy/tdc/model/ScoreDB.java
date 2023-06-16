@@ -10,9 +10,12 @@ public class ScoreDB extends Database {
         DATABASE_FILE = "src/main/resources/score.txt";
         loadDatabase();
     }
+
     public Map<String,String> allScore(){
         return dataMap;
     }
+
+    // CR: return int
     public String updateScore(String username) {
         String score = dataMap.get(username);
         if (score == null){
