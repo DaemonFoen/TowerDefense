@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
-import org.nsu.fit.golenko_dmitriy.tdc.model.FiledData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.GameData;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.UpdateListener;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
@@ -110,7 +110,7 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
     }
 
     @Override
-    public void update(FiledData data) {
+    public void update(GameData data) {
         if (data.mainTower().getHealth() <= 0) {
             graphView.getStylableVertex(ROOT).setStyleClass("guildhall-dead");
         }

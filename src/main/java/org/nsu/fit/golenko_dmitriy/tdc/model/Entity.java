@@ -14,7 +14,7 @@ public class Entity {
     private long attackReload;
     private long stepReload;
     private int actionRadius;
-    private int team;
+    private Team team;
     private long lastAttackUpdated;
     private long lastStepUpdated;
     public int getDamage() {
@@ -37,12 +37,13 @@ public class Entity {
             cell = 0;
         }
     }
-
     public void acceptDamage(int value) {
         health -= value;
     }
-
     public boolean isAlive() {
         return health > 0;
+    }
+    public enum Team{
+        ENEMY, ALLY
     }
 }

@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="Add Score View">
+    <list default="true" id="e17ed035-922e-453e-ad29-e968ae1e99dc" name="Changes" comment="...">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/nsu/fit/golenko_dmitriy/tdc/test/ModelTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/EntityCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/EntityCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/FiledData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/PlayersDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/PlayersDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Road.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/Road.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/ScoreDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/model/UserData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameEndListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/GameEndListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/Presenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/UpdateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/presenter/UpdateListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nsu/fit/golenko_dmitriy/tdc/view/GameView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,68 +119,8 @@
       <recent name="E:\Users\Dmitriy\CLionProjects\TowerDefenseClient\src\main\java\org\nsu\fit\golenko_dmitriy\tdc\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="org.nsu.fit.golenko_dmitriy.tdc.Main" />
-      <module name="TowerDefenseClient.main" />
-      <option name="VM_PARAMETERS" value="--module-path E:\Lib\javafx-sdk-20\lib --add-modules javafx.fxml,javafx.controls --add-exports javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.nsu.fit.golenko_dmitriy.tdc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TowerDefenseClient [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="buildDependents" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="TowerDefenseClient [buildNeeded]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="buildNeeded" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="TowerDefenseClient [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.ModelTest.gameEndTest">
+    <configuration name="ModelTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -178,18 +131,20 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.nsu.fit.golenko_dmitriy.tdc.test.ModelTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="TowerDefenseClient [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ModelTest.entityDeathTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -200,31 +155,105 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="run" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.nsu.fit.golenko_dmitriy.tdc.test.ModelTest.entityDeathTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ModelTest.entityGetDamageCoolDownTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.nsu.fit.golenko_dmitriy.tdc.test.ModelTest.entityGetDamageCoolDownTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ModelTest.entityStepCoolDownTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.nsu.fit.golenko_dmitriy.tdc.test.ModelTest.entityStepCoolDownTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ModelTest.gameEndTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.nsu.fit.golenko_dmitriy.tdc.test.ModelTest.gameEndTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.TowerDefenseClient [buildDependents]" />
-      <item itemvalue="Gradle.TowerDefenseClient [buildNeeded]" />
-      <item itemvalue="Gradle.TowerDefenseClient [build]" />
-      <item itemvalue="Gradle.TowerDefenseClient [run]" />
+      <item itemvalue="Gradle.ModelTest.entityDeathTest" />
+      <item itemvalue="Gradle.ModelTest.entityGetDamageCoolDownTest" />
+      <item itemvalue="Gradle.ModelTest.entityStepCoolDownTest" />
+      <item itemvalue="Gradle.ModelTest.gameEndTest" />
+      <item itemvalue="Gradle.ModelTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TowerDefenseClient [run]" />
-        <item itemvalue="Gradle.TowerDefenseClient [buildNeeded]" />
-        <item itemvalue="Gradle.TowerDefenseClient [build]" />
-        <item itemvalue="Gradle.TowerDefenseClient [buildDependents]" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.ModelTest.gameEndTest" />
+        <item itemvalue="Gradle.ModelTest" />
+        <item itemvalue="Gradle.ModelTest.entityDeathTest" />
+        <item itemvalue="Gradle.ModelTest.entityStepCoolDownTest" />
+        <item itemvalue="Gradle.ModelTest.entityGetDamageCoolDownTest" />
       </list>
     </recent_temporary>
   </component>
@@ -265,7 +294,7 @@
       <workItem from="1685704564967" duration="73000" />
       <workItem from="1686673416705" duration="1814000" />
       <workItem from="1686678171627" duration="2547000" />
-      <workItem from="1686749036439" duration="51930000" />
+      <workItem from="1686749036439" duration="60191000" />
     </task>
     <task id="LOCAL-00001" summary="View">
       <created>1682353607431</created>
@@ -323,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686872014844</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="...">
+      <created>1686872437856</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686872437856</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +385,8 @@
     <MESSAGE value="Added users db" />
     <MESSAGE value="Add score db" />
     <MESSAGE value="Add Score View" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Score View" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

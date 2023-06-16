@@ -8,7 +8,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.exception.AuthException;
 import org.nsu.fit.golenko_dmitriy.tdc.model.PlayersDB;
 import org.nsu.fit.golenko_dmitriy.tdc.model.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.model.UserData;
-import org.nsu.fit.golenko_dmitriy.tdc.model.FiledData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.GameData;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
@@ -64,12 +64,12 @@ public class Presenter implements AuthListener, UpdateListener, GameEndListener{
 
     @Override
     public void authorizedSuccessfully(String username) {
-        userData = new UserData(username,Long.parseLong(scoreDatabase.userScore(username)));
+        userData = new UserData(username);
         MainView.setView(ViewStage.MENU);
     }
 
     public List<Entry<String,String>> getScore(){
-        return scoreDatabase.score().entrySet().stream().toList();
+        return scoreDatabase.allScore().entrySet().stream().toList();
     }
 
     public void start() {
@@ -79,7 +79,7 @@ public class Presenter implements AuthListener, UpdateListener, GameEndListener{
         return game.getRoadLen();
     }
     @Override
-    public void update(FiledData data) {
+    public void update(GameData data) {
         updateListener.update(data);
     }
     public void createTower(int id){
@@ -90,7 +90,7 @@ public class Presenter implements AuthListener, UpdateListener, GameEndListener{
         if (game.isLoop()){
             game.end();
         }
-        if (Integer.parseInt(scoreDatabase.userScore(userData.username())) < score){
+        if (Integer.parseInt(scoreDatabase.updateScore(userData.username())) < score){
             scoreDatabase.addUser(userData.username(), String.valueOf(score));
         }
     }

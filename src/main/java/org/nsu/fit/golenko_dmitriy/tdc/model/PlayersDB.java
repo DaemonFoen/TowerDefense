@@ -9,11 +9,9 @@ public class PlayersDB extends Database {
         DATABASE_FILE = "src/main/resources/database.txt";
         loadDatabase();
     }
-
     public boolean userExist(String username){
         return dataMap.containsKey(username);
     }
-
     public String auth(String username, String password) {
         String storedPassword = dataMap.get(username);
         if (storedPassword != null && storedPassword.equals(password)){

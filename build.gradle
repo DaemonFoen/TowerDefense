@@ -11,7 +11,6 @@ repositories {
     mavenCentral()
 }
 
-
 sourceSets {
     main {
         resources {
@@ -20,10 +19,15 @@ sourceSets {
     }
 }
 
+//--module-path "E:\Lib\javafx-sdk-20\lib" --add-modules javafx.controls,javafx.fxml
+
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.0'
     implementation 'org.projectlombok:lombok:1.18.26'
+    implementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'junit:junit:4.13.2'
+    annotationProcessor 'junit:junit:4.13.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     implementation("org.projectlombok:lombok:1.18.26")
@@ -36,12 +40,9 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation 'com.brunomnsilva:smartgraph:1.0.0'
 
+
     javafx {
         version = "11.0.2"
         modules = [ 'javafx.controls', 'javafx.fxml' ]
     }
-}
-
-test {
-    useJUnitPlatform()
 }

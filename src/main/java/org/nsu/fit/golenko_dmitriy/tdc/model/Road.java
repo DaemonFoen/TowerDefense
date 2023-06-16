@@ -49,8 +49,8 @@ public class Road {
         }
         entity.setCell(position);
         switch (entity.getTeam()) {
-            case 0 -> allies.add(entity);
-            case 1 -> enemies.add(entity);
+            case ALLY -> allies.add(entity);
+            case ENEMY -> enemies.add(entity);
         }
     }
 
@@ -70,7 +70,7 @@ public class Road {
         defeatedEnemy += allEntity - list.size();
     }
 
-    public int updateHealth() {
+    private int updateHealth() {
         allyDamage = new int[length];
         enemyDamage = new int[length];
         calculateDamage(enemies, enemyDamage);
@@ -80,7 +80,7 @@ public class Road {
         return enemyDamage[0];
     }
 
-    public void updatePosition() {
+    private void updatePosition() {
         enemies.forEach(Entity::makeStep);
     }
 
