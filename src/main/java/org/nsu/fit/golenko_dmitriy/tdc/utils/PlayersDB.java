@@ -40,10 +40,6 @@ public class PlayersDB {
         log.info(database.toString());
     }
 
-    public boolean userExist(String username) {
-        return database.containsKey(username);
-    }
-
     public boolean addUser(String username, String data) {
         if (!database.containsKey(username)){
             database.put(username,data);

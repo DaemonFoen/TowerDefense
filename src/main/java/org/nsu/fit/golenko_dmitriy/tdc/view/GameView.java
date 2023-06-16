@@ -24,15 +24,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
-import org.nsu.fit.golenko_dmitriy.tdc.model.GameDTO;
-import org.nsu.fit.golenko_dmitriy.tdc.presenter.UpdateListener;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.ActionListener;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.EntityObject;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 @Log4j2
-public class GameView implements AbstractView, Initializable, UpdateListener {
-    public static final String ROOT = "guildhall";
-    public static Vertex<String> ROOT_VERTEX;
+public class GameView implements AbstractView, Initializable, ActionListener {
+    private static final String ROOT = "guildhall";
+    private static Vertex<String> ROOT_VERTEX;
     Graph<String, String> graph;
     Map<Long, Pair<Vertex<String>, Edge<String, String>>> entitiesObj = new HashMap<>();
     Map<Long, Boolean> entities = new HashMap<>();
@@ -70,7 +71,7 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
     private SmartGraphPanel<String, String> graphView;
 
     public GameView() {
-        MainView.getPresenter().setUpdateListener(this);
+        MainView.getPresenter().setActionListener(this);
     }
 
     public static SmartGraphPanel<String, String> initGraphView(Graph<String, String> graph) {
@@ -85,19 +86,20 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
         return index + "_";
     }
 
-    public static String getCellNameByEntity(Entity entity) {
-        return "Entity_" + entity.getId();
+    public static String getCellNameByEntity(EntityObject entity) {
+        return "Entity_" + entity.id();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         exitButton.setOnAction(event -> {
-            MainView.getPresenter().end(Integer.parseInt(score.getText()));
+            MainView.getPresenter().getUserData().setScore(Integer.parseInt(score.getText()));
+            MainView.getPresenter().end();
             MainView.setView(ViewStage.MENU);
         });
         createTowerButton.setOnAction(event -> createTower());
         Thread game = new Thread(() -> MainView.getPresenter().start());
-        this.ROAD_LENGTH = MainView.getPresenter().getRoadLen();
+        this.ROAD_LENGTH = Configuration.getInstance().settings().roadLength();
         this.graph = initGraphField();
         this.graphView = initGraphView(graph);
         this.graphView.setVertexPosition(ROOT_VERTEX, graphView.getScaleX() / 2, graphView.getScaleY() / 2);
@@ -110,15 +112,18 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
     }
 
     @Override
+    public void end() {
+        MainView.getPresenter().getUserData().setScore(Integer.parseInt(score.getText()));
+        graphView.getStylableVertex(ROOT).setStyleClass("guildhall-dead");
+    }
+
+    @Override
     public void update(GameDTO data) {
-        if (data.mainTower().getHealth() <= 0) {
-            graphView.getStylableVertex(ROOT).setStyleClass("guildhall-dead");
-        }
-        score.setText(String.valueOf(data.DefeatedEnemy()*5));
-        guildTowerHealth.setText(String.valueOf(data.mainTower().getHealth()));
-        data.road().getEntities().forEach(it -> {
-                entities.put(it.getId(), true);
-                if (!entitiesObj.containsKey(it.getId())) {
+        score.setText(String.valueOf(data.defeatedEnemy()*5));
+        guildTowerHealth.setText(String.valueOf(data.mainTowerHealth()));
+        data.entityObjects().forEach(it -> {
+                entities.put(it.id(), true);
+                if (!entitiesObj.containsKey(it.id())) {
                     createEntity(it);
                     return;
                 }
@@ -129,27 +134,27 @@ public class GameView implements AbstractView, Initializable, UpdateListener {
         graphView.update();
     }
 
-    private void createEntity(Entity entity) {
+    private void createEntity(EntityObject entity) {
         String start = getCellNameByEntity(entity);
         Vertex<String> vertexOr = insertVertex(start);
-        String end = getCellNameByIndex(entity.getCell());
+        String end = getCellNameByIndex(entity.cell());
         Edge<String, String> edge = graph.insertEdge(end, start, "Entity_" + start);
-        entitiesObj.put(entity.getId(), new Pair<>(vertexOr, edge));
+        entitiesObj.put(entity.id(), new Pair<>(vertexOr, edge));
         graphView.updateAndWait();
         SmartStylableNode vertex = graphView.getStylableVertex(start);
-        if (entity.getName().equals("default_enemy")) {
+        if (entity.name().equals("default_enemy")) {
             vertex.setStyleClass("default-enemy");
-        } else if (entity.getName().equals("default_tower")) {
+        } else if (entity.name().equals("default_tower")) {
             vertex.setStyleClass("default-tower");
         }
     }
 
-    private void updateEntity(Entity entity) {
+    private void updateEntity(EntityObject entity) {
         String start = getCellNameByEntity(entity);
-        graph.removeEdge(entitiesObj.get(entity.getId()).getValue());
-        String end = getCellNameByIndex(entity.getCell());
+        graph.removeEdge(entitiesObj.get(entity.id()).getValue());
+        String end = getCellNameByIndex(entity.cell());
         Edge<String, String> edge = graph.insertEdge(start, end, "Entity_" + start);
-        entitiesObj.put(entity.getId(), new Pair<>(entitiesObj.get(entity.getId()).getKey(), edge));
+        entitiesObj.put(entity.id(), new Pair<>(entitiesObj.get(entity.id()).getKey(), edge));
     }
 
     private void removeEntity(Long id) {

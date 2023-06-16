@@ -5,17 +5,16 @@ import org.junit.Test;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity.Team;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
-import org.nsu.fit.golenko_dmitriy.tdc.model.GameDTO;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
 import org.nsu.fit.golenko_dmitriy.tdc.model.ModelGameListener;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Road;
-import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameEndListener;
-import org.nsu.fit.golenko_dmitriy.tdc.presenter.UpdateListener;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.ActionListener;
 
 public class ModelTest {
 
     @Test
     public void gameEndTest(){
-        class TestListener implements GameEndListener, UpdateListener {
+        class TestListener implements ActionListener, UpdateListener {
             boolean flag = false;
             @Override
             public void end(int score) {

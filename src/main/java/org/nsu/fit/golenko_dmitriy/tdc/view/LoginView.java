@@ -3,7 +3,6 @@ package org.nsu.fit.golenko_dmitriy.tdc.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import org.nsu.fit.golenko_dmitriy.tdc.exception.AuthException;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.PlayersDB;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;

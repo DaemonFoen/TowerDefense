@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.EntityObject;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration.GameSettings;
 
 public class Road {
     private final ModelGameListener listener;
-    // CR: move to config
-    @Getter
-    private final int length = 15;
+    private final int length;
     private int[] allyDamage;
     private int[] enemyDamage;
-    @Getter
     private final Entity mainTower;
     private final List<Entity> enemies;
     private final List<Entity> allies;
@@ -27,13 +27,18 @@ public class Road {
         defeatedEnemy = 0;
     }
 
-    public Road(ModelGameListener listener) {
+    public Road(GameSettings settings, ModelGameListener listener) {
+        length = settings.roadLength();
         this.enemies = new ArrayList<>();
         this.allies = new ArrayList<>();
         this.listener = listener;
         this.mainTower = EntityCreator.create(Type.MAIN);
         allyDamage = new int[length];
         enemyDamage = new int[length];
+    }
+
+    public int getMainTowerHealth(){
+        return mainTower.getHealth();
     }
 
     public void update() {
@@ -55,11 +60,12 @@ public class Road {
         }
     }
 
-    public List<Entity> getEntities() {
+    public List<EntityObject> getEntitiesObjects() {
         List<Entity> result = new ArrayList<>();
         result.addAll(enemies);
         result.addAll(allies);
-        return result;
+        return result.stream().map(it -> (new EntityObject(it.getId(), it.getCell(), it.getName(),
+                GameDTO.entityTypeConvertor(it.getTeam()),it.isAlive()))).toList();
     }
 
     private void takeDamage(List<Entity> entities, int[] damage) {

@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
@@ -50,15 +51,17 @@ public class ScoreDB {
         }
     }
 
-    public Map<String, Integer> getAllScore(){
-        return database;
+    public record Score(String username, int score){}
+
+    public List<Score> getScores(){
+        return database.entrySet().stream().map(it->(new Score(it.getKey(),it.getValue()))).toList();
     }
 
     public void changeUserScore(String username, Integer score) {
         database.put(username, score);
     }
 
-    public Integer updateScore(String username) {
+    public Integer getUserScore(String username) {
         Integer score = database.get(username);
         if (score == null){
             changeUserScore(username,0);

@@ -8,16 +8,14 @@ import org.nsu.fit.golenko_dmitriy.tdc.utils.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
-import java.util.List;
-import java.util.Map.Entry;
 
 // CR: maybe split into two presenters
-public class Presenter implements UpdateListener, GameEndListener {
+public class Presenter implements ActionListener {
 
     @Getter
     private UserData userData;
     @Setter
-    private UpdateListener updateListener;
+    private ActionListener actionListener;
     @Setter
     private Game game;
 
@@ -41,25 +39,17 @@ public class Presenter implements UpdateListener, GameEndListener {
     }
 
     public void authorizedSuccessfully(String username) {
-        userData = new UserData(username);
+        userData = new UserData(username, ScoreDB.getInstance().getUserScore(username));
         MainView.setView(ViewStage.MENU);
-    }
-
-    public List<Entry<String, Integer>> getScore() {
-        return ScoreDB.getInstance().getAllScore().entrySet().stream().toList();
     }
 
     public void start() {
         game.start();
     }
 
-    public int getRoadLen() {
-        return game.getRoadLen();
-    }
-
     @Override
     public void update(GameDTO data) {
-        updateListener.update(data);
+        actionListener.update(data);
     }
 
     public void createTower(int cell) {
@@ -67,12 +57,11 @@ public class Presenter implements UpdateListener, GameEndListener {
     }
 
     @Override
-    public void end(int score) {
+    public void end() {
+        actionListener.end();
         if (game.isLoop()) {
             game.end();
         }
-        if (ScoreDB.getInstance().updateScore(userData.username()) < score) {
-            ScoreDB.getInstance().changeUserScore(userData.username(), score);
-        }
+        ScoreDB.getInstance().changeUserScore(userData.getUsername(), userData.getScore());
     }
 }

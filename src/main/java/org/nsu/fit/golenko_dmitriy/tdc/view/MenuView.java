@@ -33,7 +33,7 @@ public class MenuView implements AbstractView {
 
     @FXML
     void initialize() {
-        usernameLabel.setText(userData.username());
+        usernameLabel.setText(userData.getUsername());
         newGameButton.setOnAction(event -> MainView.setView(ViewStage.GAME));
         logoutButton.setOnAction(event -> MainView.setView(ViewStage.AUTH));
         scoreButton.setOnAction(event -> MainView.setView(ViewStage.SCORE));

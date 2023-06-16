@@ -1,6 +1,5 @@
 package org.nsu.fit.golenko_dmitriy.tdc;
 
-import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
@@ -20,6 +19,7 @@ public class Main extends Application {
         Presenter presenter = new Presenter();
         MainView.setPresenter(presenter);
         MainView.setView(ViewStage.AUTH);
-        presenter.setGame(new Game(presenter,presenter));
+        //TODO remake init
+        presenter.setGame(new Game(Configuration.getInstance().settings(), presenter));
     }
 }
