@@ -18,7 +18,6 @@ import org.nsu.fit.golenko_dmitriy.tdc.presenter.Presenter;
 
 @Log4j2
 public class MainView {
-
     private static Stage stage;
     @Getter
     @Setter

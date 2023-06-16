@@ -1,9 +1,11 @@
 package org.nsu.fit.golenko_dmitriy.tdc;
 
+import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.Presenter;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 

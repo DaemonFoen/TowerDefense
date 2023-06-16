@@ -1,7 +1,7 @@
 package org.nsu.fit.golenko_dmitriy.tdc.presenter;
 
-import org.nsu.fit.golenko_dmitriy.tdc.model.GameData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.GameDTO;
 
 public interface UpdateListener {
-    void update(GameData data);
+    void update(GameDTO data);
 }

@@ -1,0 +1,71 @@
+package org.nsu.fit.golenko_dmitriy.tdc.utils;
+
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+import lombok.extern.log4j.Log4j2;
+import org.nsu.fit.golenko_dmitriy.tdc.exception.DataBaseException;
+
+@Log4j2
+public class ScoreDB {
+    private static final String DATABASE_FILE = "src/main/resources/score.txt";
+    private final Map<String, Integer> database;
+    private static ScoreDB scoreDB;
+
+    private ScoreDB(){
+        database = loadDatabase();
+        log.info(database.toString());
+    }
+
+    public static ScoreDB getInstance(){
+        if (scoreDB == null){
+            scoreDB = new ScoreDB();
+        }
+        return scoreDB;
+    }
+
+    private Map<String,Integer> loadDatabase() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(DATABASE_FILE))) {
+            return reader.lines().map(it -> Arrays.asList(it.split(":"))).collect(
+                    Collectors.toMap(it ->(it.get(0)),it -> (Integer.parseInt(it.get(1)))));
+        } catch (IOException e) {
+            throw new DataBaseException(e.getMessage());
+        }
+    }
+
+    public void flush(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE))) {
+            for (var i: database.entrySet()){
+                writer.write(i.getKey()+":"+i.getValue().toString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new DataBaseException(e.getMessage());
+        }
+    }
+
+    public Map<String, Integer> getAllScore(){
+        return database;
+    }
+
+    public void changeUserScore(String username, Integer score) {
+        database.put(username, score);
+    }
+
+    public Integer updateScore(String username) {
+        Integer score = database.get(username);
+        if (score == null){
+            changeUserScore(username,0);
+            return 0;
+        } else {
+            return score;
+        }
+    }
+
+}

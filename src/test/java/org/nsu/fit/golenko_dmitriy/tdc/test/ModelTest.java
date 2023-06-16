@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity.Team;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
-import org.nsu.fit.golenko_dmitriy.tdc.model.GameData;
+import org.nsu.fit.golenko_dmitriy.tdc.model.GameDTO;
 import org.nsu.fit.golenko_dmitriy.tdc.model.ModelGameListener;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Road;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameEndListener;
@@ -22,7 +22,7 @@ public class ModelTest {
                 flag = true;
             }
             @Override
-            public void update(GameData data) {
+            public void update(GameDTO data) {
             }
         }
         TestListener listener = new TestListener();

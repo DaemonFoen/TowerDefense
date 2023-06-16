@@ -33,7 +33,7 @@ public class Game implements ModelGameListener {
             if (updateTimePassed > updateCooldown) {
                 log.info("Time " + lastUpdate);
                 road.update();
-                this.listener.update(new GameData(road.getMainTower(), road, road.getDefeatedEnemy()));
+                this.listener.update(new GameDTO(road.getMainTower(), road, road.getDefeatedEnemy()));
                 lastUpdate = System.currentTimeMillis();
             }
             if (enemySpawnTimePassed > enemySpawnCooldown) {

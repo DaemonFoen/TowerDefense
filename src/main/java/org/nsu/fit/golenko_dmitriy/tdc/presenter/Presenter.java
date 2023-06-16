@@ -2,8 +2,9 @@ package org.nsu.fit.golenko_dmitriy.tdc.presenter;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.nsu.fit.golenko_dmitriy.tdc.exception.AuthException;
 import org.nsu.fit.golenko_dmitriy.tdc.model.*;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.PlayersDB;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
@@ -12,9 +13,7 @@ import java.util.Map.Entry;
 
 // CR: maybe split into two presenters
 public class Presenter implements UpdateListener, GameEndListener {
-    private final PlayersDB playersDatabase;
-    @Getter
-    private final ScoreDB scoreDatabase;
+
     @Getter
     private UserData userData;
     @Setter
@@ -23,42 +22,21 @@ public class Presenter implements UpdateListener, GameEndListener {
     private Game game;
 
     public Presenter() {
-        playersDatabase = new PlayersDB();
-        scoreDatabase = new ScoreDB();
     }
 
     public void authorization(String login, String password) {
-        try {
-            // CR: check in view
-            if (login.isEmpty() || password.isEmpty()) {
-                throw new AuthException("Incorrect login or password field");
-            }
-            if (playersDatabase.auth(login, password) == null) {
-                MainView.setView(ViewStage.LOGIN);
-                throw new AuthException("Undefined login");
-            }
-        } catch (AuthException e) {
-            // CR: ???
-            MainView.showAlert(e.getClass().toString(), e.getMessage());
+        if (PlayersDB.getInstance().auth(login, password) == null) {
+            MainView.showAlert("Incorrect login", "This user does not exist");
             return;
         }
         authorizedSuccessfully(login);
     }
 
     public void registration(String login, String password) {
-        try {
-            if (login.isEmpty() || password.isEmpty()) {
-                throw new AuthException("Incorrect login or password field");
-            }
-            if (playersDatabase.userExist(login)) {
-                throw new AuthException("User is already exist");
-            }
-        } catch (AuthException e) {
-            MainView.showAlert(e.getClass().toString(), e.getMessage());
+        if (!PlayersDB.getInstance().addUser(login, password)) {
+            MainView.showAlert("Error", "User is already exist");
             return;
         }
-        // CR: return boolean
-        playersDatabase.addUser(login, password);
         authorizedSuccessfully(login);
     }
 
@@ -67,8 +45,8 @@ public class Presenter implements UpdateListener, GameEndListener {
         MainView.setView(ViewStage.MENU);
     }
 
-    public List<Entry<String, String>> getScore() {
-        return scoreDatabase.allScore().entrySet().stream().toList();
+    public List<Entry<String, Integer>> getScore() {
+        return ScoreDB.getInstance().getAllScore().entrySet().stream().toList();
     }
 
     public void start() {
@@ -80,7 +58,7 @@ public class Presenter implements UpdateListener, GameEndListener {
     }
 
     @Override
-    public void update(GameData data) {
+    public void update(GameDTO data) {
         updateListener.update(data);
     }
 
@@ -93,8 +71,8 @@ public class Presenter implements UpdateListener, GameEndListener {
         if (game.isLoop()) {
             game.end();
         }
-        if (Integer.parseInt(scoreDatabase.updateScore(userData.username())) < score) {
-            scoreDatabase.addUser(userData.username(), String.valueOf(score));
+        if (ScoreDB.getInstance().updateScore(userData.username()) < score) {
+            ScoreDB.getInstance().changeUserScore(userData.username(), score);
         }
     }
 }

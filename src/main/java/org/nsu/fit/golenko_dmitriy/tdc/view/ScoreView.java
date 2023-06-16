@@ -1,6 +1,7 @@
 package org.nsu.fit.golenko_dmitriy.tdc.view;
 
 import java.util.List;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -9,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j2;
-import org.nsu.fit.golenko_dmitriy.tdc.model.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 @Log4j2
@@ -35,13 +35,13 @@ public class ScoreView implements AbstractView {
     }
     public static class User {
         private final SimpleStringProperty name;
-        private final SimpleStringProperty age;
+        private final SimpleIntegerProperty age;
 
-        User(String name, String age){
+        User(String name, Integer age){
             this.name = new SimpleStringProperty(name);
-            this.age = new SimpleStringProperty(age);
+            this.age = new SimpleIntegerProperty(age);
         }
         public String getName(){ return name.get();}
-        public String getAge(){ return age.get();}
+        public Integer getAge(){ return age.get();}
     }
 }
