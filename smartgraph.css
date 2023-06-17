@@ -38,7 +38,7 @@
     -fx-opacity: 0.8;
 }
 
-.guildhall-alive {
+.mainTower-alive {
     -fx-stroke-width: 5;
     -fx-stroke: rgb(149, 154, 6);
     -fx-stroke-type: inside; /* you should keep this if using arrows */
@@ -47,7 +47,7 @@
     -fx-scale-y: 1;
 }
 
-.guildhall-dead {
+.mainTower-dead {
     -fx-stroke-width: 5;
     -fx-stroke: rgb(103, 103, 103);
     -fx-stroke-type: inside; /* you should keep this if using arrows */

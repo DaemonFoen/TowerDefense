@@ -8,8 +8,6 @@ import org.nsu.fit.golenko_dmitriy.tdc.utils.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
-
-// CR: maybe split into two presenters
 public class Presenter implements ActionListener {
 
     @Getter

@@ -22,7 +22,6 @@ public class Game implements ModelGameListener {
         this.listener = actionListener;
     }
     public void start() {
-        // CR: move to config
         int updateCooldown = settings.updateCooldown();
         int enemySpawnCooldown = settings.enemySpawnCooldown();
         loop = true;
@@ -51,12 +50,7 @@ public class Game implements ModelGameListener {
         listener.end();
     }
 
-    // CR: do not add methods for test only
     public void createTower(int cell) throws EntityCreationException {
         road.insert(EntityCreator.create(Type.DEFAULT_TOWER), cell);
     }
-    // CR: do not add methods for test only
-//    public int getRoadLen() {
-//        return road.getLength();
-//    }
 }

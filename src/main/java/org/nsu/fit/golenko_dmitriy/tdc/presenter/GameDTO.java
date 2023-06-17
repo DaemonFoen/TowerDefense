@@ -17,13 +17,3 @@ public record GameDTO(int length, List<EntityObject> entityObjects, int defeated
         ALLY
     }
 }
-
-
-
-// CR: dto
-//record GameObjects(RoadObject road) {}
-//
-//record RoadObject(int length, List<EntityObject> entityObjects) {}
-//
-//record EntityObject(int pos, EntityType type) {}
-//

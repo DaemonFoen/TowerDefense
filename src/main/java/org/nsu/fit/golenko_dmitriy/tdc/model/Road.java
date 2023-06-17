@@ -92,7 +92,6 @@ public class Road {
     }
 
     private void calculateDamage(List<Entity> entities, int[] damage) {
-        // CR: simplify
         entities.forEach(it -> sumOnRange(
                 it.getCell() - it.getActionRadius(),
                 it.getCell() + it.getActionRadius(),
@@ -111,9 +110,8 @@ public class Road {
         if (end > length) {
             end = length;
         }
-        for (int i = start; i < end; ++i) {
+        for (int i = start; i <= end; ++i) {
             array[i] += damage;
         }
     }
-
 }
