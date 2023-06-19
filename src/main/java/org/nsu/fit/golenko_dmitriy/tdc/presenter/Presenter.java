@@ -30,13 +30,14 @@ public class Presenter implements ActionListener {
 
     public void registration(String login, String password) {
         if (!PlayersDB.getInstance().addUser(login, password)) {
-            MainView.showAlert("Error", "User is already exist");
+            MainView.showAlert("Error", "User is already exist or username and password are incorrect");
             return;
         }
         authorizedSuccessfully(login);
     }
 
     public void authorizedSuccessfully(String username) {
+        assert username != null;
         userData = new UserData(username, ScoreDB.getInstance().getUserScore(username));
         MainView.setView(ViewStage.MENU);
     }

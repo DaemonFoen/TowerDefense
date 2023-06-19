@@ -14,22 +14,23 @@ import org.nsu.fit.golenko_dmitriy.tdc.exception.DataBaseException;
 
 @Log4j2
 public class PlayersDB {
+
     private static final String DATABASE_FILE = "src/main/resources/database.txt";
-    private final Map<String,String> database;
+    private final Map<String, String> database;
 
     private static PlayersDB playersDB;
 
-    private Map<String,String> loadDatabase() {
+    private Map<String, String> loadDatabase() {
         try (BufferedReader reader = new BufferedReader(new FileReader(DATABASE_FILE))) {
             return reader.lines().map(it -> Arrays.asList(it.split(":"))).collect(
-                    Collectors.toMap(it ->(it.get(0)),it -> (it.get(1))));
+                    Collectors.toMap(it -> (it.get(0)), it -> (it.get(1))));
         } catch (IOException e) {
             throw new DataBaseException(e.getMessage());
         }
     }
 
-    public static PlayersDB getInstance(){
-        if (playersDB == null){
+    public static PlayersDB getInstance() {
+        if (playersDB == null) {
             playersDB = new PlayersDB();
         }
         return playersDB;
@@ -41,18 +42,21 @@ public class PlayersDB {
     }
 
     public boolean addUser(String username, String data) {
-        if (!database.containsKey(username)){
-            database.put(username,data);
+        if (username == null){
+            return false;
+        }
+        if (!database.containsKey(username)) {
+            database.put(username, data);
             return true;
         } else {
             return false;
         }
     }
 
-    public void flush(){
+    public void flush() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE))) {
-            for (var i: database.entrySet()){
-                writer.write(i.getKey()+":"+i.getValue());
+            for (var i : database.entrySet()) {
+                writer.write(i.getKey() + ":" + i.getValue());
                 writer.newLine();
             }
         } catch (IOException e) {
