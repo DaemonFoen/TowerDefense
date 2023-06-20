@@ -1,0 +1,10 @@
+{
+  "name": "default_enemy",
+  "property": {
+    "health": 15,
+    "damage": 5,
+    "attackReload": 500,
+    "stepReload": 250,
+    "actionRadius": 1
+  }
+}

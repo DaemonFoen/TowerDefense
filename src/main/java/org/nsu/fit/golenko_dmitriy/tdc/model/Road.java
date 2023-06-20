@@ -8,9 +8,10 @@ import lombok.Getter;
 import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.EntityObject;
-import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration.GameSettings;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 
 public class Road {
+
     private final ModelGameListener listener;
     private final int length;
     private int[] allyDamage;
@@ -21,7 +22,7 @@ public class Road {
     @Getter(AccessLevel.PACKAGE)
     private int defeatedEnemy = 0;
 
-    public void clear(){
+    public void clear() {
         enemies.clear();
         allies.clear();
         allyDamage = new int[length];
@@ -29,7 +30,7 @@ public class Road {
         defeatedEnemy = 0;
     }
 
-    public Road(GameSettings settings, ModelGameListener listener) {
+    public Road(Configuration settings, ModelGameListener listener) {
         length = settings.roadLength();
         this.enemies = new ArrayList<>();
         this.allies = new ArrayList<>();
@@ -39,7 +40,7 @@ public class Road {
         enemyDamage = new int[length];
     }
 
-    public int getMainTowerHealth(){
+    public int getMainTowerHealth() {
         return mainTower.getHealth();
     }
 
@@ -52,14 +53,12 @@ public class Road {
     }
 
     void insert(Entity entity, int position) {
-        if (position < 0 || position >= length) {
-            // CR: assert
-            throw new IndexOutOfBoundsException();
-        }
+        assert position > 0 && position < length;
         entity.setCell(position);
-        switch (entity.getTeam()) {
-            case ALLY -> allies.add(entity);
-            case ENEMY -> enemies.add(entity);
+        if (entity instanceof Ally) {
+            allies.add(entity);
+        } else {
+            enemies.add(entity);
         }
     }
 
@@ -68,7 +67,7 @@ public class Road {
         result.addAll(enemies);
         result.addAll(allies);
         return result.stream().map(it -> (new EntityObject(it.getId(), it.getCell(), it.getType(),
-                GameDTO.entityTypeConvertor(it.getTeam()),it.isAlive()))).toList();
+                GameDTO.entityTypeConvertor(it), it.isAlive()))).toList();
     }
 
     private void takeDamage(List<Entity> entities, int[] damage) {
@@ -91,7 +90,7 @@ public class Road {
     }
 
     private void updatePosition() {
-        enemies.forEach(Entity::makeStep);
+        enemies.stream().map(it -> ((Enemy) it)).forEach(Enemy::makeStep);
     }
 
     private void calculateDamage(List<Entity> entities, int[] damage) {

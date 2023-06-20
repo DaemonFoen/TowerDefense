@@ -1,64 +1,92 @@
 package org.nsu.fit.golenko_dmitriy.tdc.model;
 
-import java.util.List;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import lombok.extern.log4j.Log4j2;
 import org.nsu.fit.golenko_dmitriy.tdc.exception.EntityCreationException;
-import org.nsu.fit.golenko_dmitriy.tdc.model.Entity.Team;
-import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
-import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration.EntityProperty;
 
+@Log4j2
 public class EntityCreator {
 
-    private static List<EntityProperty> entityPropertyList;
-    /*
-    CR:
-    {
-    "type": "MAIN",
-    health: 10,
-    ...
-    },
-    {
-    "type": TOWER,
-    ...
-    }
-     */
+    private static final String enemyPropertyPath = "src/main/resources/enemyPropertyConfig.json";
+    private static final String allyPropertyPath = "src/main/resources/allyPropertyConfig.json";
+    private static Map<String, EnemyProperty> enemyPropertyMap;
+    private static Map<String, AllyProperty> allyPropertyMap;
 
-    public static Entity create(Type type) throws EntityCreationException {
-        if (entityPropertyList == null) {
-            entityPropertyList = Configuration.getInstance().entityPropertyList();
+    public static Entity create(Type type) {
+        if (enemyPropertyMap == null || allyPropertyMap == null) {
+            enemyPropertyMap = loadEnemyMap();
+            allyPropertyMap = loadAllyMap();
         }
         switch (type) {
             case MAIN -> {
-                return new Entity(ID++, entityPropertyList.get(0).name(),
+                return new Ally(ID++, "main_tower",
                         -1,
-                        entityPropertyList.get(0).health(),
-                        entityPropertyList.get(0).damage(),
-                        entityPropertyList.get(0).attackReload(),
-                        entityPropertyList.get(0).stepReload(),
-                        entityPropertyList.get(0).actionRadius(),
-                        Team.ALLY, System.currentTimeMillis(), System.currentTimeMillis());
+                        allyPropertyMap.get("main_tower").health(),
+                        allyPropertyMap.get("main_tower").damage(),
+                        allyPropertyMap.get("main_tower").actionRadius(),
+                        System.currentTimeMillis(),
+                        allyPropertyMap.get("main_tower").attackReload());
             }
             case DEFAULT_ENEMY -> {
-                return new Entity(ID++, entityPropertyList.get(1).name(),
+                return new Enemy(ID++,
+                        "default_enemy",
                         -1,
-                        entityPropertyList.get(1).health(),
-                        entityPropertyList.get(1).damage(),
-                        entityPropertyList.get(1).attackReload(),
-                        entityPropertyList.get(1).stepReload(),
-                        entityPropertyList.get(1).actionRadius(),
-                        Team.ENEMY, System.currentTimeMillis(), System.currentTimeMillis());
+                        enemyPropertyMap.get("default_enemy").health(),
+                        enemyPropertyMap.get("default_enemy").damage(),
+                        enemyPropertyMap.get("default_enemy").actionRadius(),
+                        System.currentTimeMillis(),
+                        enemyPropertyMap.get("default_enemy").attackReload(),
+                        enemyPropertyMap.get("default_enemy").stepReload(),
+                        System.currentTimeMillis());
             }
             case DEFAULT_TOWER -> {
-                return new Entity(ID++, entityPropertyList.get(2).name(),
+                return new Ally(ID++, "default_tower",
                         -1,
-                        entityPropertyList.get(2).health(),
-                        entityPropertyList.get(2).damage(),
-                        entityPropertyList.get(2).attackReload(),
-                        entityPropertyList.get(2).stepReload(),
-                        entityPropertyList.get(2).actionRadius(),
-                        Team.ALLY, System.currentTimeMillis(), System.currentTimeMillis());
+                        allyPropertyMap.get("default_tower").health(),
+                        allyPropertyMap.get("default_tower").damage(),
+                        allyPropertyMap.get("default_tower").actionRadius(),
+                        System.currentTimeMillis(),
+                        allyPropertyMap.get("default_tower").attackReload());
+            }
+            default -> {
+                log.error("Unknown type");
+                throw new EntityCreationException("Unknown type");
             }
         }
-        throw new EntityCreationException("Unidentified Entity type");
+    }
+
+    private static Map<String, EnemyProperty> loadEnemyMap() {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File(enemyPropertyPath);
+        try {
+            return mapper.readValue(file, new TypeReference<>() {
+            });
+        } catch (IOException exception) {
+            log.fatal("Enemy configuration load error " + exception.getMessage());
+            return new HashMap<>() {{
+                put("default_enemy", new EnemyProperty(15, 5, 500, 250, 1));
+            }};
+        }
+    }
+
+    private static Map<String, AllyProperty> loadAllyMap() {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File(allyPropertyPath);
+        try {
+            return mapper.readValue(file, new TypeReference<>() {
+            });
+        } catch (IOException exception) {
+            log.fatal("Ally configuration load error  " + exception.getMessage());
+            return new HashMap<>() {{
+                put("main_tower", new AllyProperty(500, 0, 0, 0));
+                put("default_tower", new AllyProperty(75, 15, 300, 1));
+            }};
+        }
     }
 
     private EntityCreator() {
@@ -70,5 +98,13 @@ public class EntityCreator {
         DEFAULT_TOWER,
         MAIN,
         DEFAULT_ENEMY
+    }
+
+    private record EnemyProperty(int health, int damage, long attackReload, long stepReload, int actionRadius) {
+
+    }
+
+    private record AllyProperty(int health, int damage, long attackReload, int actionRadius) {
+
     }
 }

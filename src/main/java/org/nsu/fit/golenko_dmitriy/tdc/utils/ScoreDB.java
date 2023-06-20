@@ -27,7 +27,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.exception.DataBaseException;
 
 @Log4j2
 public class ScoreDB {
-    private static final String DATABASE_FILE = "src/main/resources/score.txt";
+    private static final String DATABASE_FILE = "src/main/resources/score";
     private final Map<String, Integer> database;
     private static ScoreDB scoreDB;
 

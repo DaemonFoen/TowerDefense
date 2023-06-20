@@ -59,14 +59,6 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         MainView.getPresenter().setActionListener(this);
     }
 
-    public static SmartGraphPanel<String, String> initGraphView(Graph<String, String> graph) {
-        SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
-        SmartGraphPanel<String, String> graphView = new SmartGraphPanel<>(graph, strategy);
-        graphView.getStylableVertex(MAIN_TOWER).setStyleClass("mainTower-alive");
-        graphView.setAutomaticLayout(true);
-        return graphView;
-    }
-
     private void createTower() {
         log.info("createTower()");
         int cellId;
@@ -101,8 +93,8 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         });
         createTowerButton.setOnAction(event -> createTower());
         Thread game = new Thread(() -> MainView.getPresenter().start());
-        this.roadLength = Configuration.getInstance().settings().roadLength();
-        this.graph = initGraphField();
+        this.roadLength = Configuration.getInstance().roadLength();
+        this.graph = initGraphRoad();
         this.graphView = initGraphView(graph);
         this.graphView.setVertexPosition(MAIN_TOWER_VERTEX, graphView.getScaleX() / 2, graphView.getScaleY() / 2);
         graphView.setMinWidth(700);
@@ -167,7 +159,22 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         entitiesObj.remove(id);
     }
 
-    private void appendRoad(Graph<String, String> graph) {
+    public static SmartGraphPanel<String, String> initGraphView(Graph<String, String> graph) {
+        SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
+        SmartGraphPanel<String, String> graphView = new SmartGraphPanel<>(graph, strategy);
+        graphView.getStylableVertex(MAIN_TOWER).setStyleClass("mainTower-alive");
+        graphView.setAutomaticLayout(true);
+        return graphView;
+    }
+
+    private Graph<String, String> initGraphRoad() {
+        Graph<String, String> graph = new GraphEdgeList<>();
+        MAIN_TOWER_VERTEX = graph.insertVertex(MAIN_TOWER);
+        createRoad(graph);
+        return graph;
+    }
+
+    private void createRoad(Graph<String, String> graph) {
         String lastVertex = MAIN_TOWER;
         for (int i = 0; i < roadLength; ++i) {
             String newVertex = getCellNameByIndex(i);
@@ -175,13 +182,6 @@ public class GameView implements AbstractView, Initializable, ActionListener {
             graph.insertEdge(lastVertex, newVertex, newVertex);
             lastVertex = newVertex;
         }
-    }
-
-    private Graph<String, String> initGraphField() {
-        Graph<String, String> graph = new GraphEdgeList<>();
-        MAIN_TOWER_VERTEX = graph.insertVertex(MAIN_TOWER);
-        appendRoad(graph);
-        return graph;
     }
 
     public Vertex<String> insertVertex(String name) {

@@ -1,0 +1,6 @@
+{
+  "updateCooldown" : 600,
+  "enemySpawnCooldown" : 5000,
+  "roadLength" : 15,
+  "mainTowerPosition" : 0
+}

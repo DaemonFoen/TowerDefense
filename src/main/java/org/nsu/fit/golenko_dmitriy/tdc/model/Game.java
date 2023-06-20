@@ -6,17 +6,18 @@ import org.nsu.fit.golenko_dmitriy.tdc.exception.EntityCreationException;
 import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.ActionListener;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
-import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration.GameSettings;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 
 @Log4j2
 public class Game implements ModelGameListener {
-    private final GameSettings settings;
+
+    private final Configuration settings;
     private final Road road;
     private final ActionListener listener;
     @Getter
     private boolean loop;
 
-    public Game(GameSettings settings, ActionListener actionListener) {
+    public Game(Configuration settings, ActionListener actionListener) {
         this.road = new Road(settings, this);
         this.settings = settings;
         this.listener = actionListener;
@@ -35,7 +36,8 @@ public class Game implements ModelGameListener {
             if (updateTimePassed > updateCooldown) {
                 log.info("Time " + lastUpdate);
                 road.update();
-                listener.update(new GameDTO(settings.roadLength(), road.getEntitiesObjects(), road.getDefeatedEnemy(), road.getMainTowerHealth()));
+                listener.update(new GameDTO(settings.roadLength(), road.getEntitiesObjects(), road.getDefeatedEnemy(),
+                        road.getMainTowerHealth()));
                 lastUpdate = System.currentTimeMillis();
             }
             if (enemySpawnTimePassed > enemySpawnCooldown) {

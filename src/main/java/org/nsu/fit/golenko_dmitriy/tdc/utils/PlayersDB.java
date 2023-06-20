@@ -15,7 +15,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.exception.DataBaseException;
 @Log4j2
 public class PlayersDB {
 
-    private static final String DATABASE_FILE = "src/main/resources/database.txt";
+    private static final String DATABASE_FILE = "src/main/resources/database";
     private final Map<String, String> database;
 
     private static PlayersDB instance;

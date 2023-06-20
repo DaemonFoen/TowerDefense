@@ -2,6 +2,8 @@ package org.nsu.fit.golenko_dmitriy.tdc;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator;
+import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.Presenter;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
@@ -15,11 +17,14 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage stage) {
+
+        Configuration.getInstance();
+        EntityCreator.create(Type.DEFAULT_TOWER);
+
         MainView.initView(stage);
         Presenter presenter = new Presenter();
         MainView.setPresenter(presenter);
         MainView.setView(ViewStage.AUTH);
-        //TODO remake init
-        presenter.setGame(new Game(Configuration.getInstance().settings(), presenter));
+        presenter.setGame(new Game(Configuration.getInstance(), presenter));
     }
 }
