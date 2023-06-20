@@ -13,6 +13,18 @@ import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
 import org.nsu.fit.golenko_dmitriy.tdc.exception.DataBaseException;
 
+//class DB<KeyType, ValueType> {
+//    private final String dbFile;
+//
+//    protected final Map<KeyType, ValueType> data;
+//
+//    DB(String dbFile) {
+//        this.dbFile = dbFile;
+//    }
+//
+//    flush()
+//}
+
 @Log4j2
 public class ScoreDB {
     private static final String DATABASE_FILE = "src/main/resources/score.txt";

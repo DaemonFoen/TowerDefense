@@ -9,6 +9,18 @@ import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration.EntityProperty;
 public class EntityCreator {
 
     private static List<EntityProperty> entityPropertyList;
+    /*
+    CR:
+    {
+    "type": "MAIN",
+    health: 10,
+    ...
+    },
+    {
+    "type": TOWER,
+    ...
+    }
+     */
 
     public static Entity create(Type type) throws EntityCreationException {
         if (entityPropertyList == null) {

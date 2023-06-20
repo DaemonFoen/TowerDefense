@@ -2,6 +2,8 @@ package org.nsu.fit.golenko_dmitriy.tdc.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
@@ -16,7 +18,7 @@ public class Road {
     private final Entity mainTower;
     private final List<Entity> enemies;
     private final List<Entity> allies;
-    @Getter
+    @Getter(AccessLevel.PACKAGE)
     private int defeatedEnemy = 0;
 
     public void clear(){
@@ -41,7 +43,7 @@ public class Road {
         return mainTower.getHealth();
     }
 
-    public void update() {
+    void update() {
         updatePosition();
         mainTower.acceptDamage(updateHealth());
         if (!mainTower.isAlive()) {
@@ -49,8 +51,9 @@ public class Road {
         }
     }
 
-    public void insert(Entity entity, int position) {
+    void insert(Entity entity, int position) {
         if (position < 0 || position >= length) {
+            // CR: assert
             throw new IndexOutOfBoundsException();
         }
         entity.setCell(position);
@@ -64,7 +67,7 @@ public class Road {
         List<Entity> result = new ArrayList<>();
         result.addAll(enemies);
         result.addAll(allies);
-        return result.stream().map(it -> (new EntityObject(it.getId(), it.getCell(), it.getName(),
+        return result.stream().map(it -> (new EntityObject(it.getId(), it.getCell(), it.getType(),
                 GameDTO.entityTypeConvertor(it.getTeam()),it.isAlive()))).toList();
     }
 

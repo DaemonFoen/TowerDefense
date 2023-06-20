@@ -18,22 +18,23 @@ public class PlayersDB {
     private static final String DATABASE_FILE = "src/main/resources/database.txt";
     private final Map<String, String> database;
 
-    private static PlayersDB playersDB;
+    private static PlayersDB instance;
 
     private Map<String, String> loadDatabase() {
         try (BufferedReader reader = new BufferedReader(new FileReader(DATABASE_FILE))) {
             return reader.lines().map(it -> Arrays.asList(it.split(":"))).collect(
                     Collectors.toMap(it -> (it.get(0)), it -> (it.get(1))));
         } catch (IOException e) {
+            // CR: log, load empty
             throw new DataBaseException(e.getMessage());
         }
     }
 
     public static PlayersDB getInstance() {
-        if (playersDB == null) {
-            playersDB = new PlayersDB();
+        if (instance == null) {
+            instance = new PlayersDB();
         }
-        return playersDB;
+        return instance;
     }
 
     private PlayersDB() {
@@ -41,35 +42,26 @@ public class PlayersDB {
         log.info(database.toString());
     }
 
-    public boolean addUser(String username, String data) {
-        if (username == null){
-            return false;
-        }
-        if (!database.containsKey(username)) {
-            database.put(username, data);
-            return true;
-        } else {
-            return false;
-        }
+    public boolean addUser(String username, String password) {
+        assert username != null;
+        return database.putIfAbsent(username, password) == null;
     }
 
     public void flush() {
+        // CR: nio
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE))) {
             for (var i : database.entrySet()) {
                 writer.write(i.getKey() + ":" + i.getValue());
                 writer.newLine();
             }
         } catch (IOException e) {
+            // CR: log, clear file
             throw new DataBaseException(e.getMessage());
         }
     }
 
     public String auth(String username, String password) {
         String storedPassword = database.get(username);
-        if (storedPassword != null && storedPassword.equals(password)) {
-            return username;
-        } else {
-            return null;
-        }
+        return storedPassword != null && storedPassword.equals(password) ? username : null;
     }
 }

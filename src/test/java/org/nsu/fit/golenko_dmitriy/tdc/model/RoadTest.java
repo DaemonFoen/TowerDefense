@@ -1,17 +1,25 @@
-package org.nsu.fit.golenko_dmitriy.tdc.test;
+package org.nsu.fit.golenko_dmitriy.tdc.model;
 
 import junit.framework.TestCase;
 import org.junit.Test;
-import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity.Team;
-import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
-import org.nsu.fit.golenko_dmitriy.tdc.model.ModelGameListener;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
-import org.nsu.fit.golenko_dmitriy.tdc.model.Road;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.ActionListener;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration.GameSettings;
 
-public class ModelTest {
+/*
+
+1. main tower is dead
+2. enemy receives damage, does not die
+3. enemy receives damage, dies (also check counter)
+4. ally receives damage, does not die
+5. ally receives damage, dies
+6. new enemy spawns after cool down
+7. enemy makes one step
+8. enemy makes one step, nowhere to go
+9. enemy cannot attack before cooldown passes
+ */
+public class RoadTest {
 
     @Test
     public void gameSpawnEnemyTest(){
@@ -73,16 +81,9 @@ public class ModelTest {
         TestCase.assertEquals(0, entity.getDamage());
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void roadInsertOutOfBoundExceptionTest(){
-        GameSettings settings = new GameSettings(10,10,15);
-        Road road = new Road(settings, null);
-        Entity entity = new Entity(0,"default_enemy",-1, 15, 5, 500, 250,1, Team.ENEMY, 0, 0);
-        road.insert(entity,settings.roadLength());
-    }
-
     @Test
     public void roadEndCallbackTest(){
+        // CR: pass main tower hp in config
         GameSettings settings = new GameSettings(10,10,3);
         class TestListener implements ModelGameListener {
             int i = 0;

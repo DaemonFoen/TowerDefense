@@ -35,10 +35,11 @@ public class GameView implements AbstractView, Initializable, ActionListener {
 
     private static final String MAIN_TOWER = "mainTower";
     private static Vertex<String> MAIN_TOWER_VERTEX;
+    // CR: List<EntityObject>?
     Graph<String, String> graph;
     Map<Long, Pair<Vertex<String>, Edge<String, String>>> entitiesObj = new HashMap<>();
     Map<Long, Boolean> entities = new HashMap<>();
-    private int ROAD_LENGTH;
+    private int roadLength;
     @FXML
     private TextField cellPromptField;
     @FXML
@@ -75,7 +76,7 @@ public class GameView implements AbstractView, Initializable, ActionListener {
             cellPromptField.setText("");
             return;
         }
-        if (cellId < 1 || cellId > ROAD_LENGTH) {
+        if (cellId < 1 || cellId > roadLength) {
             cellPromptField.setText("");
             return;
         }
@@ -100,7 +101,7 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         });
         createTowerButton.setOnAction(event -> createTower());
         Thread game = new Thread(() -> MainView.getPresenter().start());
-        this.ROAD_LENGTH = Configuration.getInstance().settings().roadLength();
+        this.roadLength = Configuration.getInstance().settings().roadLength();
         this.graph = initGraphField();
         this.graphView = initGraphView(graph);
         this.graphView.setVertexPosition(MAIN_TOWER_VERTEX, graphView.getScaleX() / 2, graphView.getScaleY() / 2);
@@ -166,10 +167,9 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         entitiesObj.remove(id);
     }
 
-
     private void appendRoad(Graph<String, String> graph) {
         String lastVertex = MAIN_TOWER;
-        for (int i = 0; i < ROAD_LENGTH; ++i) {
+        for (int i = 0; i < roadLength; ++i) {
             String newVertex = getCellNameByIndex(i);
             graph.insertVertex(newVertex);
             graph.insertEdge(lastVertex, newVertex, newVertex);

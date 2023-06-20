@@ -10,6 +10,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
 public class Presenter implements ActionListener {
 
+    // CR: store just username instead
     @Getter
     private UserData userData;
     @Setter
@@ -29,8 +30,10 @@ public class Presenter implements ActionListener {
     }
 
     public void registration(String login, String password) {
+        assert login != null;
+        assert password != null;
         if (!PlayersDB.getInstance().addUser(login, password)) {
-            MainView.showAlert("Error", "User is already exist or username and password are incorrect");
+            MainView.showAlert("Error", "User already exists");
             return;
         }
         authorizedSuccessfully(login);

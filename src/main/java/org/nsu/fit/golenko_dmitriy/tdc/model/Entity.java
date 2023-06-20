@@ -6,45 +6,53 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Entity {
+
     private long id;
-    private String name;
+    private String type;
+    private Team team;
     private int cell;
     private int health;
-    private int damage;
-    private long attackReload;
-    private long stepReload;
-    private int actionRadius;
-    private Team team;
+
+    private final int damage;
+    private final long attackReload;
+    private final long stepReload;
+    private final int actionRadius;
     private long lastAttackUpdated;
     private long lastStepUpdated;
 
     public int getDamage() {
         long current = System.currentTimeMillis();
-        if (lastAttackUpdated + attackReload > current){
+        if (lastAttackUpdated + attackReload > current) {
             return 0;
         }
         lastAttackUpdated = current;
         return damage;
     }
+
+    // CR: move to enemy entity
     public void makeStep() {
         long current = System.currentTimeMillis();
-        if (lastStepUpdated + stepReload > current){
+        if (lastStepUpdated + stepReload > current) {
             return;
         }
         lastStepUpdated = current;
-        if (cell > 0){
+        if (cell > 0) {
             cell = cell - 1;
         } else {
             cell = 0;
         }
     }
+
     public void acceptDamage(int value) {
         health -= value;
     }
+
     public boolean isAlive() {
         return health > 0;
     }
-    public enum Team{
+
+    // CR: use entity type
+    public enum Team {
         ENEMY, ALLY
     }
 }
