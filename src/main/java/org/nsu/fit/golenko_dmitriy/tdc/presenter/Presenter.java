@@ -2,17 +2,18 @@ package org.nsu.fit.golenko_dmitriy.tdc.presenter;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.nsu.fit.golenko_dmitriy.tdc.model.*;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.PlayersDB;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
+@Log4j2
 public class Presenter implements ActionListener {
 
-    // CR: store just username instead
     @Getter
-    private UserData userData;
+    private String username;
     @Setter
     private ActionListener actionListener;
     @Setter
@@ -41,7 +42,8 @@ public class Presenter implements ActionListener {
 
     public void authorizedSuccessfully(String username) {
         assert username != null;
-        userData = new UserData(username, ScoreDB.getInstance().getUserScore(username));
+        this.username = username;
+        log.info("auth success  login: " + username);
         MainView.setView(ViewStage.MENU);
     }
 
@@ -59,11 +61,10 @@ public class Presenter implements ActionListener {
     }
 
     @Override
-    public void end() {
-        actionListener.end();
+    public void end(int score) {
         if (game.isLoop()) {
             game.end();
         }
-        ScoreDB.getInstance().changeUserScore(userData.getUsername(), userData.getScore());
+        ScoreDB.getInstance().changeUserScore(username, score);
     }
 }

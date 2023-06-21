@@ -7,6 +7,8 @@ import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Game;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.Presenter;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.PlayersDB;
+import org.nsu.fit.golenko_dmitriy.tdc.utils.ScoreDB;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
@@ -20,6 +22,8 @@ public class Main extends Application {
 
         Configuration.getInstance();
         EntityCreator.create(Type.DEFAULT_TOWER);
+        PlayersDB.getInstance();
+        System.out.println(ScoreDB.getInstance());
 
         MainView.initView(stage);
         Presenter presenter = new Presenter();

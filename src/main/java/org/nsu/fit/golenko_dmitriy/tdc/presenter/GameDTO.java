@@ -5,9 +5,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.model.Ally;
 import org.nsu.fit.golenko_dmitriy.tdc.model.Entity;
 
 public record GameDTO(int length, List<EntityObject> entityObjects, int defeatedEnemy, int mainTowerHealth) {
-    // CR: do not pass dead objects
-    // CR: remove name
-    public record EntityObject(long id, int cell, String name, EntityType type, boolean isAlive){}
+    public record EntityObject(long id, int cell, EntityType type){}
 
     public static EntityType entityTypeConvertor(Entity entity){
         if (entity instanceof Ally){
@@ -15,7 +13,7 @@ public record GameDTO(int length, List<EntityObject> entityObjects, int defeated
         }
         return EntityType.ENEMY;
     }
-    enum EntityType {
+    public enum EntityType {
         ENEMY,
         ALLY
     }

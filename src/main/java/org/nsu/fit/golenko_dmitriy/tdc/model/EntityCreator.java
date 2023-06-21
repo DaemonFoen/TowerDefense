@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
 import org.nsu.fit.golenko_dmitriy.tdc.exception.EntityCreationException;
 
@@ -62,29 +64,27 @@ public class EntityCreator {
 
     private static Map<String, EnemyProperty> loadEnemyMap() {
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File(enemyPropertyPath);
         try {
-            return mapper.readValue(file, new TypeReference<>() {
-            });
+            List<EnemyProperty> enemyPropertyList = mapper.readValue(new File(enemyPropertyPath), new TypeReference<>() {});
+            return enemyPropertyList.stream().collect(Collectors.toMap(it -> it.type, it -> it));
         } catch (IOException exception) {
             log.fatal("Enemy configuration load error " + exception.getMessage());
             return new HashMap<>() {{
-                put("default_enemy", new EnemyProperty(15, 5, 500, 250, 1));
+                put("default_enemy", new EnemyProperty("default_enemy",15, 5, 500, 250, 1));
             }};
         }
     }
 
     private static Map<String, AllyProperty> loadAllyMap() {
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File(allyPropertyPath);
         try {
-            return mapper.readValue(file, new TypeReference<>() {
-            });
+            List<AllyProperty> allyPropertyList = mapper.readValue(new File(allyPropertyPath), new TypeReference<>() {});
+            return allyPropertyList.stream().collect(Collectors.toMap(it -> it.type, it -> it));
         } catch (IOException exception) {
             log.fatal("Ally configuration load error  " + exception.getMessage());
             return new HashMap<>() {{
-                put("main_tower", new AllyProperty(500, 0, 0, 0));
-                put("default_tower", new AllyProperty(75, 15, 300, 1));
+                put("main_tower", new AllyProperty("main_tower",500, 0, 0, 0));
+                put("default_tower", new AllyProperty("main_tower",75, 15, 300, 1));
             }};
         }
     }
@@ -100,11 +100,11 @@ public class EntityCreator {
         DEFAULT_ENEMY
     }
 
-    private record EnemyProperty(int health, int damage, long attackReload, long stepReload, int actionRadius) {
+    private record EnemyProperty(String type, int health, int damage, long attackReload, long stepReload, int actionRadius) {
 
     }
 
-    private record AllyProperty(int health, int damage, long attackReload, int actionRadius) {
+    private record AllyProperty(String type, int health, int damage, long attackReload, int actionRadius) {
 
     }
 }

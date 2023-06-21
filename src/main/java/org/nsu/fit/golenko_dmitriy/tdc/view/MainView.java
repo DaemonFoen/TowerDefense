@@ -42,7 +42,7 @@ public class MainView {
                 case REG -> setScene(load(Objects.requireNonNull(MainView.class.getResource("/registration.fxml")),
                         new RegistrationView()));
                 case MENU -> setScene(
-                        load(Objects.requireNonNull(MainView.class.getResource("/menu.fxml")), new MenuView(presenter.getUserData())));
+                        load(Objects.requireNonNull(MainView.class.getResource("/menu.fxml")), new MenuView(presenter.getUsername())));
                 case LOGIN -> setScene(
                         load(Objects.requireNonNull(MainView.class.getResource("/login.fxml")), new LoginView()));
                 case GAME -> setScene(

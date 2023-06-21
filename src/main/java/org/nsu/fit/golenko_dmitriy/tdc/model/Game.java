@@ -24,7 +24,6 @@ public class Game implements ModelGameListener {
     }
 
     public void start() {
-        // CR: check spawns
         int updateCooldown = settings.updateCooldown();
         int enemySpawnCooldown = settings.enemySpawnCooldown();
         loop = true;
@@ -50,14 +49,12 @@ public class Game implements ModelGameListener {
 
     @Override
     public void end() {
-        // CR: check listener is called
         loop = false;
         road.clear();
-        listener.end();
+        listener.end(road.getDefeatedEnemy());
     }
 
     public void createTower(int cell) throws EntityCreationException {
-        // CR: check new enemy on the road
         road.insert(EntityCreator.create(Type.DEFAULT_TOWER), cell);
     }
 }

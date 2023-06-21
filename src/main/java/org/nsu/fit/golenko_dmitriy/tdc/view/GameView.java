@@ -23,10 +23,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.ActionListener;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.EntityObject;
+import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.EntityType;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 
@@ -34,11 +34,9 @@ import org.nsu.fit.golenko_dmitriy.tdc.view.MainView.ViewStage;
 public class GameView implements AbstractView, Initializable, ActionListener {
 
     private static final String MAIN_TOWER = "mainTower";
-    private static Vertex<String> MAIN_TOWER_VERTEX;
-    // CR: List<EntityObject>?
     Graph<String, String> graph;
     Map<Long, Pair<Vertex<String>, Edge<String, String>>> entitiesObj = new HashMap<>();
-    Map<Long, Boolean> entities = new HashMap<>();
+//    Map<Long, Boolean> entities = new HashMap<>();
     private int roadLength;
     @FXML
     private TextField cellPromptField;
@@ -76,19 +74,11 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         thread.start();
     }
 
-    public static String getCellNameByIndex(int index) {
-        return index + "_";
-    }
-
-    public static String getCellNameByEntity(EntityObject entity) {
-        return "Entity_" + entity.id();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         exitButton.setOnAction(event -> {
-            MainView.getPresenter().getUserData().setScore(Integer.parseInt(score.getText()));
-            MainView.getPresenter().end();
+            MainView.getPresenter().end(Integer.parseInt(score.getText()));
             MainView.setView(ViewStage.MENU);
         });
         createTowerButton.setOnAction(event -> createTower());
@@ -96,7 +86,6 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         this.roadLength = Configuration.getInstance().roadLength();
         this.graph = initGraphRoad();
         this.graphView = initGraphView(graph);
-        this.graphView.setVertexPosition(MAIN_TOWER_VERTEX, graphView.getScaleX() / 2, graphView.getScaleY() / 2);
         graphView.setMinWidth(700);
         graphView.setMaxHeight(700);
         box.getChildren().add(graphView);
@@ -106,8 +95,8 @@ public class GameView implements AbstractView, Initializable, ActionListener {
     }
 
     @Override
-    public void end() {
-        MainView.getPresenter().getUserData().setScore(Integer.parseInt(score.getText()));
+    public void end(int score) {
+        this.score.setText(String.valueOf(score));
         graphView.getStylableVertex(MAIN_TOWER).setStyleClass("mainTower-dead");
     }
 
@@ -115,39 +104,39 @@ public class GameView implements AbstractView, Initializable, ActionListener {
     public void update(GameDTO data) {
         score.setText(String.valueOf(data.defeatedEnemy() * 5));
         guildTowerHealth.setText(String.valueOf(data.mainTowerHealth()));
+        data.entityObjects().stream().filter(it -> entitiesObj.containsKey(it.id())).forEach(it -> removeEntity(it.id()));
         data.entityObjects().forEach(it -> {
-            entities.put(it.id(), true);
+//            entities.put(it.id(), true);
             if (!entitiesObj.containsKey(it.id())) {
                 createEntity(it);
                 return;
             }
             moveEntity(it);
         });
-        entities.entrySet().stream().filter(t -> !t.getValue()).forEach(t -> removeEntity(t.getKey()));
-        entities = entities.entrySet().stream().filter(Map.Entry::getValue)
-                .collect(Collectors.toMap(Map.Entry::getKey, t -> false));
+//        entities.entrySet().stream().filter(t -> !t.getValue()).forEach(t -> removeEntity(t.getKey()));
+//        entities = entities.entrySet().stream().filter(Map.Entry::getValue).collect(Collectors.toMap(Map.Entry::getKey, t -> false));
         graphView.update();
     }
 
     private void createEntity(EntityObject entity) {
-        String start = getCellNameByEntity(entity);
-        Vertex<String> vertexOr = insertVertex(start);
-        String end = getCellNameByIndex(entity.cell());
+        String start = getVertexNameByEntity(entity);
+        Vertex<String> entityVertex = graph.insertVertex(start);
+        String end = getVertexNameByIndex(entity.cell());
         Edge<String, String> edge = graph.insertEdge(end, start, "Entity_" + start);
-        entitiesObj.put(entity.id(), new Pair<>(vertexOr, edge));
+        entitiesObj.put(entity.id(), new Pair<>(entityVertex, edge));
         graphView.updateAndWait();
         SmartStylableNode vertex = graphView.getStylableVertex(start);
-        if (entity.name().equals("default_enemy")) {
+        if (entity.type().equals(EntityType.ENEMY)) {
             vertex.setStyleClass("default-enemy");
-        } else if (entity.name().equals("default_tower")) {
+        } else if (entity.type().equals(EntityType.ALLY)) {
             vertex.setStyleClass("default-tower");
         }
     }
 
     private void moveEntity(EntityObject entity) {
-        String start = getCellNameByEntity(entity);
+        String start = getVertexNameByEntity(entity);
         graph.removeEdge(entitiesObj.get(entity.id()).getValue());
-        String end = getCellNameByIndex(entity.cell());
+        String end = getVertexNameByIndex(entity.cell());
         Edge<String, String> edge = graph.insertEdge(start, end, "Entity_" + start);
         entitiesObj.put(entity.id(), new Pair<>(entitiesObj.get(entity.id()).getKey(), edge));
     }
@@ -169,7 +158,7 @@ public class GameView implements AbstractView, Initializable, ActionListener {
 
     private Graph<String, String> initGraphRoad() {
         Graph<String, String> graph = new GraphEdgeList<>();
-        MAIN_TOWER_VERTEX = graph.insertVertex(MAIN_TOWER);
+        graph.insertVertex(MAIN_TOWER);
         createRoad(graph);
         return graph;
     }
@@ -177,15 +166,18 @@ public class GameView implements AbstractView, Initializable, ActionListener {
     private void createRoad(Graph<String, String> graph) {
         String lastVertex = MAIN_TOWER;
         for (int i = 0; i < roadLength; ++i) {
-            String newVertex = getCellNameByIndex(i);
+            String newVertex = getVertexNameByIndex(i);
             graph.insertVertex(newVertex);
             graph.insertEdge(lastVertex, newVertex, newVertex);
             lastVertex = newVertex;
         }
     }
 
-    public Vertex<String> insertVertex(String name) {
-        return graph.insertVertex(name);
+    public static String getVertexNameByIndex(int index) {
+        return index + "_";
     }
 
+    public static String getVertexNameByEntity(EntityObject entity) {
+        return "Entity_" + entity.id();
+    }
 }

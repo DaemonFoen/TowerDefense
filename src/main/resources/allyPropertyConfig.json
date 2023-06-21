@@ -1,22 +1,16 @@
 [
   {
-    "name": "default_tower",
-    "property": {
-      "health": 75,
-      "damage": 15,
-      "attackReload": 500,
-      "stepReload": 300,
-      "actionRadius": 1
-    }
+    "type": "default_tower",
+    "health": 75,
+    "damage": 15,
+    "attackReload": 500,
+    "actionRadius": 1
   },
   {
-    "name": "main_tower",
-    "property": {
-      "health": 500,
-      "damage": 0,
-      "attackReload": 0,
-      "stepReload": 0,
-      "actionRadius": 0
-    }
+    "type": "main_tower",
+    "health": 500,
+    "damage": 0,
+    "attackReload": 0,
+    "actionRadius": 0
   }
 ]

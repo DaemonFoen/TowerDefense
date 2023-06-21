@@ -1,12 +1,13 @@
 package org.nsu.fit.golenko_dmitriy.tdc.model;
 
+import static org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.entityTypeConvertor;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
-import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.EntityObject;
 import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 
@@ -53,7 +54,7 @@ public class Road {
     }
 
     void insert(Entity entity, int position) {
-        assert position > 0 && position < length;
+        assert position >= 0 && position < length;
         entity.setCell(position);
         if (entity instanceof Ally) {
             allies.add(entity);
@@ -66,8 +67,7 @@ public class Road {
         List<Entity> result = new ArrayList<>();
         result.addAll(enemies);
         result.addAll(allies);
-        return result.stream().map(it -> (new EntityObject(it.getId(), it.getCell(), it.getType(),
-                GameDTO.entityTypeConvertor(it), it.isAlive()))).toList();
+        return result.stream().map(it -> (new EntityObject(it.getId(), it.getCell(), entityTypeConvertor(it)))).toList();
     }
 
     private void takeDamage(List<Entity> entities, int[] damage) {
@@ -109,8 +109,8 @@ public class Road {
         if (start < 0) {
             start = 0;
         }
-        if (end > length) {
-            end = length;
+        if (end >= length) {
+            end = length - 1;
         }
         for (int i = start; i <= end; ++i) {
             array[i] += damage;

@@ -6,7 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 
 @Log4j2
-public record Configuration(int updateCooldown, int enemySpawnCooldown, int roadLength, int mainTowerHealth, int mainTowerPosition) {
+public record Configuration(int updateCooldown, int enemySpawnCooldown, int roadLength, int mainTowerPosition) {
     private static final String path = "src/main/resources/gameConfig.json";
     private static Configuration configuration;
 
@@ -20,7 +20,7 @@ public record Configuration(int updateCooldown, int enemySpawnCooldown, int road
             configuration = mapper.readValue(file, Configuration.class);
         } catch (IOException exception) {
             log.fatal("Configure file not found " + exception.getMessage());
-            configuration = new Configuration(600,5000,15,200,0);
+            configuration = new Configuration(500,2000,15, 0);
         }
         return configuration;
     }

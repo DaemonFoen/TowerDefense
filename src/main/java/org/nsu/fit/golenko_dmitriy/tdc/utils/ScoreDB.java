@@ -1,67 +1,34 @@
 package org.nsu.fit.golenko_dmitriy.tdc.utils;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.extern.log4j.Log4j2;
-import org.nsu.fit.golenko_dmitriy.tdc.exception.DataBaseException;
-
-//class DB<KeyType, ValueType> {
-//    private final String dbFile;
-//
-//    protected final Map<KeyType, ValueType> data;
-//
-//    DB(String dbFile) {
-//        this.dbFile = dbFile;
-//    }
-//
-//    flush()
-//}
 
 @Log4j2
-public class ScoreDB {
-    private static final String DATABASE_FILE = "src/main/resources/score";
-    private final Map<String, Integer> database;
-    private static ScoreDB scoreDB;
+public class ScoreDB extends Database<String,Integer> {
+    private static final Path DATABASE_FILE = Path.of("src/main/resources/score");
+    private static ScoreDB instance;
 
-    private ScoreDB(){
-        database = loadDatabase();
-        log.info(database.toString());
+    private ScoreDB(Path DATABASE_FILE, Map<String,Integer> database){
+        super(DATABASE_FILE,database);
     }
 
     public static ScoreDB getInstance(){
-        if (scoreDB == null){
-            scoreDB = new ScoreDB();
+        if (instance == null){
+            instance = new ScoreDB(DATABASE_FILE, loadDatabase());
         }
-        return scoreDB;
+        log.info(instance.database.toString());
+        return instance;
     }
 
-    private Map<String,Integer> loadDatabase() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(DATABASE_FILE))) {
-            return reader.lines().map(it -> Arrays.asList(it.split(":"))).collect(
-                    Collectors.toMap(it ->(it.get(0)),it -> (Integer.parseInt(it.get(1)))));
-        } catch (IOException e) {
-            throw new DataBaseException(e.getMessage());
-        }
-    }
-
-    public void flush(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE))) {
-            for (var i: database.entrySet()){
-                writer.write(i.getKey()+":"+i.getValue().toString());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            throw new DataBaseException(e.getMessage());
-        }
-    }
 
     public record Score(String username, int score){}
 
@@ -73,13 +40,14 @@ public class ScoreDB {
         database.put(username, score);
     }
 
-    public Integer getUserScore(String username) {
-        Integer score = database.get(username);
-        if (score == null){
-            changeUserScore(username,0);
-            return 0;
-        } else {
-            return score;
+
+    private static Map<String, Integer> loadDatabase() {
+        try (Stream<String> lines = Files.lines(DATABASE_FILE)) {
+            return lines.map(it -> Arrays.asList(it.split(":"))).collect(
+                    Collectors.toMap(it -> (it.get(0)), it -> (Integer.parseInt(it.get(1)))));
+        } catch (IOException exception) {
+            log.error("Error loading players database " + exception.getMessage());
+            return new HashMap<>();
         }
     }
 
