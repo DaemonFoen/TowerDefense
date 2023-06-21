@@ -36,7 +36,6 @@ public class GameView implements AbstractView, Initializable, ActionListener {
     private static final String MAIN_TOWER = "mainTower";
     Graph<String, String> graph;
     Map<Long, Pair<Vertex<String>, Edge<String, String>>> entitiesObj = new HashMap<>();
-//    Map<Long, Boolean> entities = new HashMap<>();
     private int roadLength;
     @FXML
     private TextField cellPromptField;
@@ -106,15 +105,12 @@ public class GameView implements AbstractView, Initializable, ActionListener {
         guildTowerHealth.setText(String.valueOf(data.mainTowerHealth()));
         data.entityObjects().stream().filter(it -> entitiesObj.containsKey(it.id())).forEach(it -> removeEntity(it.id()));
         data.entityObjects().forEach(it -> {
-//            entities.put(it.id(), true);
             if (!entitiesObj.containsKey(it.id())) {
                 createEntity(it);
                 return;
             }
             moveEntity(it);
         });
-//        entities.entrySet().stream().filter(t -> !t.getValue()).forEach(t -> removeEntity(t.getKey()));
-//        entities = entities.entrySet().stream().filter(Map.Entry::getValue).collect(Collectors.toMap(Map.Entry::getKey, t -> false));
         graphView.update();
     }
 
