@@ -8,7 +8,6 @@ import lombok.Data;
 public abstract class Entity {
 
     protected long id;
-    protected String type;
     protected int cell;
     protected int health;
     protected final int damage;

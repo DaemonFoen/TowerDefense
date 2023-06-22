@@ -13,10 +13,7 @@ import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 
 public class Road {
 
-    private final ModelGameListener listener;
     private final int length;
-    private int[] allyDamage;
-    private int[] enemyDamage;
     private final Entity mainTower;
     private final List<Entity> enemies;
     private final List<Entity> allies;
@@ -26,41 +23,34 @@ public class Road {
     public void clear() {
         enemies.clear();
         allies.clear();
-        allyDamage = new int[length];
-        enemyDamage = new int[length];
         defeatedEnemy = 0;
     }
 
-    public Road(Configuration settings, ModelGameListener listener) {
-        length = settings.roadLength();
+    public Road(int length) {
+        this.length = length;
         this.enemies = new ArrayList<>();
         this.allies = new ArrayList<>();
-        this.listener = listener;
         this.mainTower = EntityCreator.create(Type.MAIN);
-        allyDamage = new int[length];
-        enemyDamage = new int[length];
     }
 
     public int getMainTowerHealth() {
         return mainTower.getHealth();
     }
 
-    void update() {
+    boolean update() {
         updatePosition();
         mainTower.acceptDamage(updateHealth());
-        if (!mainTower.isAlive()) {
-            listener.end();
-        }
+        return !mainTower.isAlive();
     }
 
-    void insert(Entity entity, int position) {
-        assert position >= 0 && position < length;
-        entity.setCell(position);
-        if (entity instanceof Ally) {
-            allies.add(entity);
-        } else {
-            enemies.add(entity);
-        }
+    public void addEnemy(Entity enemy, int pos) {
+        enemy.setCell(pos);
+        enemies.add(enemy);
+    }
+
+    public void addAlly(Entity ally, int pos) {
+        ally.setCell(pos);
+        allies.add(ally);
     }
 
     public List<EntityObject> getEntitiesObjects() {
@@ -80,9 +70,9 @@ public class Road {
     }
 
     private int updateHealth() {
-        allyDamage = new int[length];
+        int[] allyDamage = new int[length];
         calculateDamage(allies, allyDamage);
-        enemyDamage = new int[length];
+        int[] enemyDamage = new int[length];
         calculateDamage(enemies, enemyDamage);
         takeDamage(enemies, allyDamage);
         takeDamage(allies, enemyDamage);

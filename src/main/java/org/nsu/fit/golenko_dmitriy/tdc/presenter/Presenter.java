@@ -62,7 +62,7 @@ public class Presenter implements ActionListener {
 
     @Override
     public void end(int score) {
-        if (game.isLoop()) {
+        if (!game.hasEnded()) {
             game.end();
         }
         ScoreDB.getInstance().changeUserScore(username, score);

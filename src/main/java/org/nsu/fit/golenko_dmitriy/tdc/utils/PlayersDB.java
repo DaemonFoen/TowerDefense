@@ -17,16 +17,15 @@ public class PlayersDB extends Database<String, String> {
 
     private static PlayersDB instance;
 
-
     public static PlayersDB getInstance() {
         if (instance == null) {
-            instance = new PlayersDB(DATABASE_FILE, loadDatabase());
+            instance = new PlayersDB(loadDatabase());
         }
         log.info(instance.database.toString());
         return instance;
     }
 
-    private PlayersDB(Path DATABASE_FILE, Map<String,String> database) {
+    private PlayersDB(Map<String,String> database) {
         super(DATABASE_FILE, database);
     }
 
@@ -34,7 +33,6 @@ public class PlayersDB extends Database<String, String> {
         assert username != null;
         return database.putIfAbsent(username, password) == null;
     }
-
 
     public String auth(String username, String password) {
         String storedPassword = database.get(username);

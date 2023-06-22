@@ -13,7 +13,6 @@ public class Enemy extends Entity {
     private long lastStepUpdated;
 
     public Enemy(long id,
-            String type,
             int cell,
             int health,
             int damage,
@@ -22,7 +21,7 @@ public class Enemy extends Entity {
             long attackReload,
             long stepReload,
             long lastStepUpdated) {
-        super(id, type, cell, health, damage, actionRadius, lastAttackUpdated, attackReload);
+        super(id, cell, health, damage, actionRadius, lastAttackUpdated, attackReload);
         this.stepReload = stepReload;
         this.lastStepUpdated = lastStepUpdated;
     }
@@ -33,11 +32,7 @@ public class Enemy extends Entity {
             return;
         }
         lastStepUpdated = current;
-        if (cell > 0) {
-            cell = cell - 1;
-        } else {
-            cell = 0;
-        }
+        if (cell > 0) cell = cell - 1;
     }
 }
 

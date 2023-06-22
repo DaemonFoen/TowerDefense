@@ -25,6 +25,7 @@ public abstract class Database<K, V> {
             database.forEach(
                     (key, value) -> {
                         try {
+                            // CR: we reopen a file each time
                             Files.writeString(dbFile, key + ":" + value + '\n', StandardOpenOption.APPEND);
                         } catch (IOException exception) {
                             log.error("Error writing players database " + exception.getMessage());

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
-import org.nsu.fit.golenko_dmitriy.tdc.exception.EntityCreationException;
 
 @Log4j2
 public class EntityCreator {
@@ -20,46 +19,37 @@ public class EntityCreator {
     private static Map<String, AllyProperty> allyPropertyMap;
 
     public static Entity create(Type type) {
+        // CR: can also do a singleton
         if (enemyPropertyMap == null || allyPropertyMap == null) {
             enemyPropertyMap = loadEnemyMap();
             allyPropertyMap = loadAllyMap();
         }
-        switch (type) {
-            case MAIN -> {
-                return new Ally(ID++, "main_tower",
-                        -1,
-                        allyPropertyMap.get("main_tower").health(),
-                        allyPropertyMap.get("main_tower").damage(),
-                        allyPropertyMap.get("main_tower").actionRadius(),
-                        System.currentTimeMillis(),
-                        allyPropertyMap.get("main_tower").attackReload());
-            }
-            case DEFAULT_ENEMY -> {
-                return new Enemy(ID++,
-                        "default_enemy",
-                        -1,
-                        enemyPropertyMap.get("default_enemy").health(),
-                        enemyPropertyMap.get("default_enemy").damage(),
-                        enemyPropertyMap.get("default_enemy").actionRadius(),
-                        System.currentTimeMillis(),
-                        enemyPropertyMap.get("default_enemy").attackReload(),
-                        enemyPropertyMap.get("default_enemy").stepReload(),
-                        System.currentTimeMillis());
-            }
-            case DEFAULT_TOWER -> {
-                return new Ally(ID++, "default_tower",
-                        -1,
-                        allyPropertyMap.get("default_tower").health(),
-                        allyPropertyMap.get("default_tower").damage(),
-                        allyPropertyMap.get("default_tower").actionRadius(),
-                        System.currentTimeMillis(),
-                        allyPropertyMap.get("default_tower").attackReload());
-            }
-            default -> {
-                log.error("Unknown type");
-                throw new EntityCreationException("Unknown type");
-            }
-        }
+        return switch (type) {
+            case MAIN -> new Ally(ID++,
+                    -1,
+                    // CR: we extract property from the map for each 'get'
+                    allyPropertyMap.get("main_tower").health(),
+                    allyPropertyMap.get("main_tower").damage(),
+                    allyPropertyMap.get("main_tower").actionRadius(),
+                    System.currentTimeMillis(),
+                    allyPropertyMap.get("main_tower").attackReload());
+            case DEFAULT_ENEMY -> new Enemy(ID++,
+                    -1,
+                    enemyPropertyMap.get("default_enemy").health(),
+                    enemyPropertyMap.get("default_enemy").damage(),
+                    enemyPropertyMap.get("default_enemy").actionRadius(),
+                    System.currentTimeMillis(),
+                    enemyPropertyMap.get("default_enemy").attackReload(),
+                    enemyPropertyMap.get("default_enemy").stepReload(),
+                    System.currentTimeMillis());
+            case DEFAULT_TOWER -> new Ally(ID++,
+                    -1,
+                    allyPropertyMap.get("default_tower").health(),
+                    allyPropertyMap.get("default_tower").damage(),
+                    allyPropertyMap.get("default_tower").actionRadius(),
+                    System.currentTimeMillis(),
+                    allyPropertyMap.get("default_tower").attackReload());
+        };
     }
 
     private static Map<String, EnemyProperty> loadEnemyMap() {
