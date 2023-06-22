@@ -25,7 +25,7 @@ public class GameTest {
         Thread thread = new Thread(game::start);
         thread.start();
         while (System.currentTimeMillis() - start < 3200);
-        TestCase.assertEquals(listener.enemyCounter,10);
+        TestCase.assertEquals(10,listener.enemyCounter);
     }
 
     @Test

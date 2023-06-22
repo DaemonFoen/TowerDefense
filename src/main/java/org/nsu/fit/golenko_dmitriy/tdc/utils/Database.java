@@ -1,5 +1,6 @@
 package org.nsu.fit.golenko_dmitriy.tdc.utils;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,16 +21,16 @@ public abstract class Database<K, V> {
 
     public void flush() {
         log.info("flush: " + database.toString());
-        try {
-            Files.write(dbFile, new byte[0], StandardOpenOption.TRUNCATE_EXISTING);
+        try(BufferedWriter writer = Files.newBufferedWriter(dbFile,StandardOpenOption.TRUNCATE_EXISTING)) {
             database.forEach(
                     (key, value) -> {
                         try {
-                            // CR: we reopen a file each time
-                            Files.writeString(dbFile, key + ":" + value + '\n', StandardOpenOption.APPEND);
+                            writer.write(key + ":" + value);
+                            writer.newLine();
                         } catch (IOException exception) {
                             log.error("Error writing players database " + exception.getMessage());
                             try {
+                                writer.flush();
                                 Files.write(dbFile, new byte[0], StandardOpenOption.TRUNCATE_EXISTING);
                             } catch (IOException e) {
                                 log.fatal("Error clearing players database " + e.getMessage());

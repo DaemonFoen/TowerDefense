@@ -9,7 +9,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import org.nsu.fit.golenko_dmitriy.tdc.model.EntityCreator.Type;
 import org.nsu.fit.golenko_dmitriy.tdc.presenter.GameDTO.EntityObject;
-import org.nsu.fit.golenko_dmitriy.tdc.utils.Configuration;
 
 public class Road {
 
@@ -30,7 +29,7 @@ public class Road {
         this.length = length;
         this.enemies = new ArrayList<>();
         this.allies = new ArrayList<>();
-        this.mainTower = EntityCreator.create(Type.MAIN);
+        this.mainTower = EntityCreator.getInstance().create(Type.MAIN);
     }
 
     public int getMainTowerHealth() {
@@ -40,7 +39,7 @@ public class Road {
     boolean update() {
         updatePosition();
         mainTower.acceptDamage(updateHealth());
-        return !mainTower.isAlive();
+        return mainTower.isAlive();
     }
 
     public void addEnemy(Entity enemy, int pos) {

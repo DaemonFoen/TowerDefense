@@ -42,7 +42,7 @@ public class Game {
             }
             if (enemySpawnTimePassed > enemySpawnCooldown) {
                 log.info("Time " + enemyLastSpawn);
-                road.addEnemy(EntityCreator.create(Type.DEFAULT_ENEMY), settings.roadLength() - 1);
+                road.addEnemy(EntityCreator.getInstance().create(Type.DEFAULT_ENEMY), settings.roadLength() - 1);
                 enemyLastSpawn = System.currentTimeMillis();
             }
         }
@@ -60,6 +60,6 @@ public class Game {
     }
 
     public void createTower(int cell) throws EntityCreationException {
-        road.addAlly(EntityCreator.create(Type.DEFAULT_TOWER), cell);
+        road.addAlly(EntityCreator.getInstance().create(Type.DEFAULT_TOWER), cell);
     }
 }
