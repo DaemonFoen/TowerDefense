@@ -39,6 +39,7 @@ public class PlayersDB extends Database<String, String> {
         return storedPassword != null && storedPassword.equals(password) ? username : null;
     }
 
+
     private static Map<String, String> loadDatabase() {
         try (Stream<String> lines = Files.lines(DATABASE_FILE)) {
             return lines.map(it -> Arrays.asList(it.split(":"))).collect(

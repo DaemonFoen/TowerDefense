@@ -30,8 +30,7 @@ public abstract class Database<K, V> {
                         } catch (IOException exception) {
                             log.error("Error writing players database " + exception.getMessage());
                             try {
-                                writer.flush();
-                                Files.write(dbFile, new byte[0], StandardOpenOption.TRUNCATE_EXISTING);
+                                Files.deleteIfExists(dbFile);
                             } catch (IOException e) {
                                 log.fatal("Error clearing players database " + e.getMessage());
                             }
